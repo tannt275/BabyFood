@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import tannt275.babyfood.fragment.FoodInWeekFragment;
 import tannt275.babyfood.fragment.NutritionTowerFragment;
 
 public class RefineMainActivity extends AppCompatActivity
@@ -92,6 +93,16 @@ public class RefineMainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        switch (id){
+            case R.id.nav_nutrition:
+                NutritionTowerFragment nutritionTowerFragment = new NutritionTowerFragment();
+                displayFragment(nutritionTowerFragment);
+                break;
+            case R.id.nav_food_in_week:
+                FoodInWeekFragment foodInWeekFragment = new FoodInWeekFragment();
+                displayFragment(foodInWeekFragment);
+                break;
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

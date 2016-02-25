@@ -13,6 +13,7 @@ import tannt275.babyfood.R;
 import tannt275.babyfood.common.AppUtils;
 import tannt275.babyfood.common.FileUtils;
 import tannt275.babyfood.model.AdvicesModel;
+import tannt275.babyfood.model.FoodInWeekModel;
 import tannt275.babyfood.model.FoodModel;
 import tannt275.babyfood.model.NutritionTowerModel;
 
@@ -351,19 +352,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * get food by week
      * @return
      */
-    public ArrayList<NutritionTowerModel> foodInWeek() {
+    public ArrayList<FoodInWeekModel> getFoodInWeek() {
 
-        ArrayList<NutritionTowerModel> listItem = new ArrayList<>();
+        ArrayList<FoodInWeekModel> listItem = new ArrayList<>();
 
         SQLiteDatabase database = this.getWritableDatabase();
         String queryCondition = "SELECT * FROM " + TABLE_FOOD_IN_WEEK;
         Cursor cursor = database.rawQuery(queryCondition, null);
         if (cursor.moveToFirst()) {
             do {
-                NutritionTowerModel item = new NutritionTowerModel();
+                FoodInWeekModel item = new FoodInWeekModel();
                 item.set_id(cursor.getInt(cursor.getColumnIndexOrThrow(FOOD_WEEK_ID)));
-                item.set_contentItem(cursor.getString(cursor.getColumnIndexOrThrow(FOOD_WEEK_CONTENT)));
-                item.set_nameItem(cursor.getString(cursor.getColumnIndexOrThrow(FOOD_WEEK_DAY)));
+                item.set_content(cursor.getString(cursor.getColumnIndexOrThrow(FOOD_WEEK_CONTENT)));
+                item.set_day(cursor.getString(cursor.getColumnIndexOrThrow(FOOD_WEEK_DAY)));
                 listItem.add(item);
             } while (cursor.moveToNext());
         }
