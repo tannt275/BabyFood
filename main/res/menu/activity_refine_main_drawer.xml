@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_nutrition"
+            android:icon="@mipmap/app_drawer_nutrition_tower"
+            android:title="@string/drawer_menu_nutrition_tower" />
+        <item
+            android:id="@+id/nav_food_in_week"
+            android:icon="@mipmap/app_drawer_week"
+            android:title="@string/drawer_food_in_week" />
+        <item
+            android:id="@+id/nav_remember"
+            android:icon="@mipmap/app_remember_icon"
+            android:title="@string/drawer_should" />
+        <item
+            android:id="@+id/nav_waring"
+            android:icon="@mipmap/app_warning_icon"
+            android:title="@string/drawer_warning" />
+    </group>
+
+    <item android:title="@string/drawer_foods">
+        <menu>
+            <item
+                android:id="@+id/nav_below_8_months"
+                android:icon="@mipmap/app_splash_icon"
+                android:title="@string/drawer_foods_below_8_months" />
+            <item
+                android:id="@+id/nav_9_to_11_months"
+                android:icon="@mipmap/app_splash_icon"
+                android:title="@string/drawer_foods_9_11_months" />
+            <item
+                android:id="@+id/nav_below_15_months"
+                android:icon="@mipmap/app_splash_icon"
+                android:title="@string/drawer_foods_15_months" />
+        </menu>
+    </item>
+
+</menu>

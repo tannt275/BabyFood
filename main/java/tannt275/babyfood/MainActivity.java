@@ -21,10 +21,9 @@ import java.util.List;
 
 import tannt275.babyfood.adapter.AdapterMenuDrawer;
 import tannt275.babyfood.fragment.AdvicesFragment;
-import tannt275.babyfood.fragment.MainFragment;
 import tannt275.babyfood.model.MenuModel;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.ButtonListener, AdvicesFragment.ClickItemInFragmentAdvices {
+public class MainActivity extends AppCompatActivity implements AdvicesFragment.ClickItemInFragmentAdvices, AdapterView.OnItemClickListener {
 
     public static String TAG = MainActivity.class.getSimpleName();
 
@@ -48,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Butt
         drawerLayout = (DrawerLayout) findViewById(R.id.mainLayout);
         listDrawer = (ListView) findViewById(R.id.listDrawer);
         initView();
+        AdvicesFragment advicesFragment = new AdvicesFragment();
+        advicesFragment.setClickItemInFragmentAdvices(this);
+        displayFragment(advicesFragment, getString(R.string.advices_fragment));
     }
 
     private void initView() {
@@ -69,16 +71,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Butt
         menuModelList = generateMenu();
         adapterMenuDrawer = new AdapterMenuDrawer(this, menuModelList);
         listDrawer.setAdapter(adapterMenuDrawer);
-        listDrawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.e(TAG, "position: " + position + "data: " + menuModelList.get(position).getTitle());
-            }
-        });
-
-        MainFragment mainFragment = new MainFragment();
-        mainFragment.setButtonListener(this);
-        displayFragment(mainFragment, getString(R.string.main_fragment));
+        listDrawer.setOnItemClickListener(this);
 
     }
 
@@ -130,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Butt
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        return false;
     }
 
     @Override
@@ -145,28 +138,12 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Butt
     }
 
     @Override
-    public void onButtonListener(int idButton) {
-        switch (idButton){
-            case R.id.main_remember_btn:
-                Log.e(TAG, "buttonClick is: "+ idButton);
-                AdvicesFragment advicesFragment = new AdvicesFragment();
-                advicesFragment.setClickItemInFragmentAdvices(this);
-                displayFragment(advicesFragment, getString(R.string.advices_fragment));
-                break;
-            case R.id.main_remember_nutrition_tower:
-                Log.e(TAG, "buttonClick is: "+ idButton);
-                break;
-            case R.id.main_below_one_year:
-                Log.e(TAG, "buttonClick is: "+ idButton);
-                break;
-            case R.id.main_foods:
-                Log.e(TAG, "buttonClick is: "+ idButton);
-                break;
-        }
+    public void onClickItemInFragmentAdvices(int pos, String type) {
+
     }
 
     @Override
-    public void onClickItemInFragmentAdvices(int pos, String type) {
-
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        
     }
 }

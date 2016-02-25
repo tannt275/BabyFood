@@ -45,17 +45,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        /*switch (v.getId()){
-            case R.id.main_remember_btn:
 
-                break;
-            case R.id.main_remember_nutrition_tower:
-                break;
-            case R.id.main_below_one_year:
-                break;
-            case R.id.main_foods:
-                break;
-        }*/
         buttonListener.onButtonListener(v.getId());
     }
 

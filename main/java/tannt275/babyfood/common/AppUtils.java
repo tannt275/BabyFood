@@ -23,6 +23,7 @@ import tannt275.babyfood.R;
  * Created by Administrator on 08/09/2015.
  */
 public class AppUtils {
+
     public static String TAG = AppUtils.class.getSimpleName();
     public static String TAG_8MONTHS = "TAG_8MONTHS";
     public static String TAG_9MONTHS = "TAG_9MONTHS";
@@ -47,6 +48,8 @@ public class AppUtils {
     /*for save image*/
     public static String IMAGE_DIRECTORY_NAME = "BabyFood";
     public static String IMAGE_NAME_PREFIX = "bf_";
+
+    public static String DATA_NUTRITION_TOWER_ITEM = "DATA_NUTRITION_TOWER_ITEM";
 
     public static DisplayImageOptions OPTION_IMAGE = new DisplayImageOptions.Builder()
             .showImageOnLoading(R.mipmap.ic_launcher)
