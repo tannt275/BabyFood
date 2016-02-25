@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:tag="@string/advices_fragment_individual"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/advicesListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@android:color/white"
+        android:dividerHeight="3dp"
+        android:scrollbars="none">
+    </ListView>
+
+</LinearLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@mipmap/ic_launcher"
+        android:title="Test"
+        app:showAsAction="always|withText">
+        <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/remember"
+                android:checkable="false"
+                android:icon="@drawable/app_reminder_icon"
+                android:title="@string/drawer_menu_remember" />
+            <item
+                android:id="@+id/tower"
+                android:checkable="false"
+                android:icon="@mipmap/ic_launcher_1"
+                android:title="@string/drawer_menu_nutrition_tower" />
+            <item
+                android:id="@+id/below_one_year"
+                android:checkable="false"
+                android:icon="@drawable/app_reminder_icon"
+                android:title="@string/drawer_menu_below_one_year" />
+            <item
+                android:id="@+id/foods"
+                android:checkable="false"
+                android:icon="@mipmap/ic_launcher_1"
+                android:title="@string/drawer_menu_foods" />
+
+        </group>
+    </item>
+
+</menu>

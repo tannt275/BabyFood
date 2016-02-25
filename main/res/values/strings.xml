@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Babyfood</string>
+    <string name="action_settings">Settings</string>
+    <string name="introdution_me">Powered by Sir[Un]</string>
+
+    <!--for drawer layout-->
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+    <string name="drawer_menu_remember">Nhớ và tránh</string>
+    <string name="drawer_menu_nutrition_tower">Tháp dinh dưỡng</string>
+    <string name="drawer_menu_below_one_year">0 - 1 Tuổi</string>
+    <string name="drawer_menu_foods">Các món ăn</string>
+    <string name="drawer_menu_description"> Description Icon</string>
+
+    <string name="advices_should">Nên nhớ</string>
+    <string name="advices_warning">Nên tránh</string>
+
+    <string name="main_screen_image_description">Main Background</string>
+    <string name="main_fragment">Main Fragment</string>
+
+    <string name="update_favorite_success">Cập nhật trạng thái Yêu thích thành công!</string>
+    <string name="update_favorite_fail">Cập nhật trạng thái Yêu thích thất bại!</string>
+    <string name="advices_fragment">Advices Fragment</string>
+    <string name="advices_itemUrl">Item Url</string>
+    <string name="advices_fragment_individual">Individual Advices Fragment</string>
+    <string name="splash_image">Splash Image</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="close_image">Close Image</string>
+    <string name="share_image">Share Image</string>
+    <string name="add_image">Add Image</string>
+    <string name="delete_image">Delete Image</string>
+    <string name="edit_image">Edit Image</string>
+
+</resources>
