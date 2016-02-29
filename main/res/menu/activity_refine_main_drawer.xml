@@ -22,18 +22,21 @@
 
     <item android:title="@string/drawer_foods">
         <menu>
-            <item
-                android:id="@+id/nav_below_8_months"
-                android:icon="@mipmap/app_splash_icon"
-                android:title="@string/drawer_foods_below_8_months" />
-            <item
-                android:id="@+id/nav_9_to_11_months"
-                android:icon="@mipmap/app_splash_icon"
-                android:title="@string/drawer_foods_9_11_months" />
-            <item
-                android:id="@+id/nav_below_15_months"
-                android:icon="@mipmap/app_splash_icon"
-                android:title="@string/drawer_foods_15_months" />
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_below_8_months"
+                    android:icon="@mipmap/app_splash_icon"
+                    android:title="@string/drawer_foods_below_8_months" />
+                <item
+                    android:id="@+id/nav_9_to_11_months"
+                    android:icon="@mipmap/app_splash_icon"
+                    android:title="@string/drawer_foods_9_11_months" />
+                <item
+                    android:id="@+id/nav_below_15_months"
+                    android:icon="@mipmap/app_splash_icon"
+                    android:title="@string/drawer_foods_15_months" />
+            </group>
         </menu>
     </item>
 

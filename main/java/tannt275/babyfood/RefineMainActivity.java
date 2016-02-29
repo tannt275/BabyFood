@@ -102,6 +102,10 @@ public class RefineMainActivity extends AppCompatActivity
                 FoodInWeekFragment foodInWeekFragment = new FoodInWeekFragment();
                 displayFragment(foodInWeekFragment);
                 break;
+            case R.id.nav_below_8_months:
+                FoodInWeekFragment foodInWeekFragment2 = new FoodInWeekFragment();
+                displayFragment(foodInWeekFragment2);
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
