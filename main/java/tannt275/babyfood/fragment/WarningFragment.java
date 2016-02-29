@@ -17,9 +17,9 @@ import tannt275.babyfood.common.AppUtils;
 import tannt275.babyfood.database.DatabaseHandler;
 import tannt275.babyfood.model.AdvicesModel;
 
-public class ShouldFragment extends Fragment implements AdvicesAdapter.ClickItemAdvices {
+public class WarningFragment extends Fragment implements AdvicesAdapter.ClickItemAdvices {
 
-    public static String TAG = ShouldFragment.class.getSimpleName();
+    public static String TAG = WarningFragment.class.getSimpleName();
 
     private RecyclerView recyclerView;
     private DatabaseHandler databaseHandler;
@@ -30,9 +30,8 @@ public class ShouldFragment extends Fragment implements AdvicesAdapter.ClickItem
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         databaseHandler = new DatabaseHandler(getActivity());
-        shouldLists = databaseHandler.getListAdvices(AppUtils.TAG_REMEMBER);
+        shouldLists = databaseHandler.getListAdvices(AppUtils.TAG_FORGET);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,6 +52,6 @@ public class ShouldFragment extends Fragment implements AdvicesAdapter.ClickItem
 
     @Override
     public void onClickItem(AdvicesModel advicesModel) {
-        Log.e(TAG, "click Item: "+ advicesModel.convertToString());
+        Log.e(TAG, "click Item: " + advicesModel.convertToString());
     }
 }

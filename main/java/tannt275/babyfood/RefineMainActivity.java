@@ -16,6 +16,8 @@ import android.view.View;
 
 import tannt275.babyfood.fragment.FoodInWeekFragment;
 import tannt275.babyfood.fragment.NutritionTowerFragment;
+import tannt275.babyfood.fragment.ShouldFragment;
+import tannt275.babyfood.fragment.WarningFragment;
 
 public class RefineMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -105,6 +107,14 @@ public class RefineMainActivity extends AppCompatActivity
             case R.id.nav_below_8_months:
                 FoodInWeekFragment foodInWeekFragment2 = new FoodInWeekFragment();
                 displayFragment(foodInWeekFragment2);
+                break;
+            case R.id.nav_remember:
+                ShouldFragment shouldFragment = new ShouldFragment();
+                displayFragment(shouldFragment);
+                break;
+            case R.id.nav_waring:
+                WarningFragment warningFragment = new WarningFragment();
+                displayFragment(warningFragment);
                 break;
         }
 
