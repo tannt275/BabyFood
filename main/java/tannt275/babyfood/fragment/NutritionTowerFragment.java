@@ -120,7 +120,7 @@ public class NutritionTowerFragment extends Fragment {
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.nutrition_tower_fragment_item, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_nutrition_tower_item, container, false);
             content = (TextView) rootView.findViewById(R.id.nutrition_tower_item_content);
             name = (TextView) rootView.findViewById(R.id.nutrition_tower_item_name);
             imageView = (ImageView) rootView.findViewById(R.id.nutrition_tower_item_image);
