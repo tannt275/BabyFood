@@ -1,7 +1,5 @@
 package tannt275.babyfood.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +13,7 @@ import java.util.List;
 import tannt275.babyfood.R;
 import tannt275.babyfood.adapter.FoodsAdapter;
 import tannt275.babyfood.common.AppUtils;
+import tannt275.babyfood.common.Log;
 import tannt275.babyfood.database.DatabaseHandler;
 import tannt275.babyfood.model.FoodModel;
 
@@ -68,6 +67,6 @@ public class FoodsFragment extends Fragment implements FoodsAdapter.ClickItemFoo
 
     @Override
     public void onClickItemFoods(FoodModel foodModel) {
-
+        Log.e(TAG, "item: " + foodModel.convertToString());
     }
 }

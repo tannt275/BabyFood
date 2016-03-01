@@ -45,9 +45,16 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsViewHolder> {
 
     @Override
     public void onBindViewHolder(FoodsViewHolder holder, int position) {
-        FoodModel foodModel = foodModels.get(position);
+        final FoodModel foodModel = foodModels.get(position);
         holder.name.setText(String.valueOf(position + 1) + "." + foodModel.get_nameFood());
         holder.content.setText(foodModel.get_methodContent());
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clickItemFoods != null)
+                    clickItemFoods.onClickItemFoods(foodModel);
+            }
+        });
     }
 
     @Override

@@ -3,7 +3,7 @@ package tannt275.babyfood.model;
 /**
  * Created by TanNT on 12/18/2015.
  */
-public class FoodModel {
+public class FoodModel extends BaseModel{
     private String _nameFood;
     private String _materialContent;
     private String _methodContent;
