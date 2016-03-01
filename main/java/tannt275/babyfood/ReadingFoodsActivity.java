@@ -36,7 +36,7 @@ public class ReadingFoodsActivity extends AppCompatActivity {
 
     private ReadingFoodsAdapter readingFoodsAdapter;
     private DatabaseHandler databaseHandler;
-    private List<FoodModel> foodModels;
+    private List<FoodModel> foodModelsList;
     private String nameTable;
     private int currentPosition;
 
@@ -74,8 +74,10 @@ public class ReadingFoodsActivity extends AppCompatActivity {
 
     private void fillData() {
 
-        foodModels = databaseHandler.getFoods(nameTable);
-        readingFoodsAdapter = new ReadingFoodsAdapter(getSupportFragmentManager(), foodModels);
+        foodModelsList = databaseHandler.getFoods(nameTable);
+        foodModel = foodModelsList.get(currentPosition);
+
+        readingFoodsAdapter = new ReadingFoodsAdapter(getSupportFragmentManager(), foodModelsList);
         viewPager.setAdapter(readingFoodsAdapter);
         viewPager.setCurrentItem(currentPosition);
 
@@ -87,7 +89,7 @@ public class ReadingFoodsActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                foodModel = foodModels.get(position);
+                foodModel = foodModelsList.get(position);
                 checkStateButton(foodModel);
             }
 
@@ -123,34 +125,43 @@ public class ReadingFoodsActivity extends AppCompatActivity {
     private View.OnClickListener shareItemListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String linkAppOnStore = "https://play.google.com/store/apps/details?id=" + getPackageName();
-            ShareLinkContent shareLinkContent = new ShareLinkContent.Builder()
-                    .setContentTitle("Món: " + foodModel.get_nameFood() + " Thời gian: " + foodModel.get_timesFood())
-                    .setContentDescription(foodModel.get_methodContent())
-                    .setContentUrl(Uri.parse(linkAppOnStore))
-                    .build();
-            if (shareDialog.canShow(ShareLinkContent.class)) {
-                shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
-                    @Override
-                    public void onSuccess(Sharer.Result result) {
-                        Log.e(TAG, "onSuccess");
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        Log.e(TAG, "onCancel");
-                    }
-
-                    @Override
-                    public void onError(FacebookException error) {
-                        Log.e(TAG, "onError");
-                    }
-                });
-                shareDialog.show(shareLinkContent);
-            }
-
+            onShareContent(foodModel);
         }
     };
+
+    /**
+     * share content to facebook
+     * @param food
+     */
+    private void onShareContent(FoodModel food) {
+        Log.e(TAG, "items: " + food.convertToString());
+
+        String linkAppOnStore = "https://play.google.com/store/apps/details?id=" + getPackageName();
+        ShareLinkContent shareLinkContent = new ShareLinkContent.Builder()
+                .setContentTitle("Món: " + food.get_nameFood() + " Thời gian: " + food.get_timesFood())
+                .setContentDescription(food.get_methodContent())
+                .setContentUrl(Uri.parse(linkAppOnStore))
+                .build();
+        if (shareDialog.canShow(ShareLinkContent.class)) {
+            shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+                @Override
+                public void onSuccess(Sharer.Result result) {
+                    Log.e(TAG, "onSuccess");
+                }
+
+                @Override
+                public void onCancel() {
+                    Log.e(TAG, "onCancel");
+                }
+
+                @Override
+                public void onError(FacebookException error) {
+                    Log.e(TAG, "onError");
+                }
+            });
+            shareDialog.show(shareLinkContent);
+        }
+    }
 
     private void checkStateButton(FoodModel foods) {
         deleteImage.setEnabled(foods.get_admins() == 1);
