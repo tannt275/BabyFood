@@ -4,9 +4,89 @@
     android:layout_height="match_parent"
     tools:context="tannt275.babyfood.fragment.ReadingAdvicesFragment">
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/interactiveLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/adjustView"
+            android:layout_width="2dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/deleteImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:layout_toLeftOf="@id/adjustView"
+            android:src="@mipmap/app_delete_active_icon" />
+
+        <ImageView
+            android:id="@+id/favoriteImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/deleteImage"
+            android:src="@mipmap/app_favorite_active_icon" />
+
+        <ImageView
+            android:id="@+id/addImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@id/adjustView"
+            android:src="@mipmap/app_add_icon" />
+
+        <ImageView
+            android:id="@+id/shareImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/addImage"
+            android:src="@mipmap/app_share_icon" />
+    </RelativeLayout>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Test" />
+        android:layout_below="@id/interactiveLayout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/urlAdvices"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/app_splash_icon" />
+
+            <TextView
+                android:id="@+id/nameAdvices"
+                style="@style/TextFontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/urlAdvices"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/app_name"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/contentAdvices"
+                style="@style/TextFontNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nameAdvices"
+                android:text="@string/app_name" />
+
+        </RelativeLayout>
+    </ScrollView>
+
 
 </RelativeLayout>

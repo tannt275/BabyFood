@@ -55,8 +55,13 @@ public class ShouldFragment extends Fragment implements AdvicesAdapter.ClickItem
 
     @Override
     public void onClickItem(AdvicesModel advicesModel) {
-        Log.e(TAG, "click Item: "+ advicesModel.convertToString());
+        Log.e(TAG, "position: " + shouldLists.indexOf(advicesModel) + " Item: "+ advicesModel.convertToString());
         Intent toReadingActivity = new Intent(getActivity(), ReadingActivity.class);
+        int currentPosition = shouldLists.indexOf(advicesModel);
+        Bundle bundle = new Bundle();
+        bundle.putInt(AppUtils.CURRENT_POSITION, currentPosition);
+        bundle.putString(AppUtils.DATA_TYPE_ADVICES, AppUtils.TAG_REMEMBER);
+        toReadingActivity.putExtras(bundle);
         startActivity(toReadingActivity);
     }
 }

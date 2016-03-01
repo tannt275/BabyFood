@@ -52,6 +52,7 @@ public class AppUtils {
 
     public static String DATA_NUTRITION_TOWER_ITEM = "DATA_NUTRITION_TOWER_ITEM";
     public static String DATA_FOOD_IN_WEEK_ITEM = "DATA_FOOD_IN_WEEK_ITEM";
+    public static String DATA_TYPE_ADVICES = "DATA_TYPE_ADVICES";
 
     public static DisplayImageOptions OPTION_IMAGE = new DisplayImageOptions.Builder()
             .showImageOnLoading(R.mipmap.ic_launcher)

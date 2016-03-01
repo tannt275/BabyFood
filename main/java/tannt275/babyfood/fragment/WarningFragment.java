@@ -25,14 +25,14 @@ public class WarningFragment extends Fragment implements AdvicesAdapter.ClickIte
 
     private RecyclerView recyclerView;
     private DatabaseHandler databaseHandler;
-    private List<AdvicesModel> shouldLists;
+    private List<AdvicesModel> waringLists;
     private AdvicesAdapter advicesAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         databaseHandler = new DatabaseHandler(getActivity());
-        shouldLists = databaseHandler.getListAdvices(AppUtils.TAG_FORGET);
+        waringLists = databaseHandler.getListAdvices(AppUtils.TAG_FORGET);
     }
 
     @Override
@@ -47,15 +47,21 @@ public class WarningFragment extends Fragment implements AdvicesAdapter.ClickIte
     }
 
     private void initData() {
-        advicesAdapter = new AdvicesAdapter(getActivity(), shouldLists);
+        advicesAdapter = new AdvicesAdapter(getActivity(), waringLists);
         advicesAdapter.setClickItemAdvices(this);
         recyclerView.setAdapter(advicesAdapter);
     }
 
     @Override
     public void onClickItem(AdvicesModel advicesModel) {
-        Log.e(TAG, "click Item: " + advicesModel.convertToString());
+        Log.e(TAG, " position: " + waringLists.indexOf(advicesModel) + " Item: " + advicesModel.convertToString());
         Intent toReadingActivity = new Intent(getActivity(), ReadingActivity.class);
+
+        int currentPosition = waringLists.indexOf(advicesModel);
+        Bundle bundle = new Bundle();
+        bundle.putInt(AppUtils.CURRENT_POSITION, currentPosition);
+        bundle.putString(AppUtils.DATA_TYPE_ADVICES, AppUtils.TAG_FORGET);
+        toReadingActivity.putExtras(bundle);
         startActivity(toReadingActivity);
     }
 }

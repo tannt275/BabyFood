@@ -1,5 +1,8 @@
 package tannt275.babyfood.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by TanNT on 12/18/2015.
  */
@@ -49,4 +52,5 @@ public class AdvicesModel extends BaseModel{
     public void set_admin(int _admin) {
         this._admin = _admin;
     }
+
 }
