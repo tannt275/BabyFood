@@ -68,12 +68,15 @@ public class ReadingActivity extends AppCompatActivity {
         deleteImage = (ImageView) findViewById(R.id.deleteImage);
         shareImage = (ImageView) findViewById(R.id.shareImage);
 
+
         fillData();
     }
 
     private void fillData() {
 
         advicesModelList = databaseHandler.getListAdvices(typeAdvice);
+        advicesModel = advicesModelList.get(currentPosition);
+
         readingAdvicesAdapter = new ReadingAdvicesAdapter(getSupportFragmentManager(), advicesModelList);
         viewPager.setAdapter(readingAdvicesAdapter);
         viewPager.setCurrentItem(currentPosition);

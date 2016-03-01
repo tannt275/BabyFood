@@ -13,6 +13,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import tannt275.babyfood.R;
 import tannt275.babyfood.common.AppUtils;
+import tannt275.babyfood.common.Log;
 import tannt275.babyfood.model.AdvicesModel;
 
 public class ReadingAdvicesFragment extends Fragment {

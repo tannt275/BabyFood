@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Created by TanNT on 12/18/2015.
  */
-public class AdvicesModel extends BaseModel{
+public class AdvicesModel extends BaseModel {
     private int _id;
     private String _name;
     private String _url;

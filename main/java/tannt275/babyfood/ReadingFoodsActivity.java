@@ -134,7 +134,6 @@ public class ReadingFoodsActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Sharer.Result result) {
                         Log.e(TAG, "onSuccess");
-
                     }
 
                     @Override
