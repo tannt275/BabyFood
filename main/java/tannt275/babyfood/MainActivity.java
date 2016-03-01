@@ -21,7 +21,7 @@ import tannt275.babyfood.fragment.NutritionTowerFragment;
 import tannt275.babyfood.fragment.ShouldFragment;
 import tannt275.babyfood.fragment.WarningFragment;
 
-public class RefineMainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
