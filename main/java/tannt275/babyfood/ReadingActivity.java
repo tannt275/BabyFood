@@ -82,6 +82,25 @@ public class ReadingActivity extends AppCompatActivity {
         deleteImage.setOnClickListener(deleteItemListener);
         shareImage.setOnClickListener(shareItemListener);
 
+        deleteImage.setEnabled(advicesModelList.get(viewPager.getCurrentItem()).get_admin() == 1);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                advicesModel = advicesModelList.get(viewPager.getCurrentItem());
+                deleteImage.setEnabled(advicesModel.get_admin() == 1);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
     }
 
@@ -100,7 +119,6 @@ public class ReadingActivity extends AppCompatActivity {
     private View.OnClickListener shareItemListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            advicesModel = advicesModelList.get(viewPager.getCurrentItem());
             shareContent(advicesModel);
         }
     };

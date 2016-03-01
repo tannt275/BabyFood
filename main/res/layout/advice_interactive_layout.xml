@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <ImageView
         android:id="@+id/addImage"
         android:layout_width="wrap_content"
@@ -16,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:layout_toLeftOf="@id/addImage"
-        android:src="@mipmap/app_delete_active_icon" />
+        android:src="@drawable/delete_advices_selector" />
 
     <ImageView
         android:id="@+id/shareImage"
