@@ -1,0 +1,58 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tannt275.babyfood.fragment.ReadingFoodsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fragment_reading_foods_name"
+            style="@style/TextFontHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/app_name"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/fragment_reading_foods_time"
+            style="@style/TextFontNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reading_foods_fragment_time_prefix" />
+
+        <TextView
+            android:background="@drawable/reading_foods_fragment_shape"
+            style="@style/TextFontNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reading_foods_fragment_material"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/fragment_reading_foods_material"
+            style="@style/TextFontNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name" />
+
+        <TextView
+            android:background="@drawable/reading_foods_fragment_shape"
+            style="@style/TextFontNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reading_foods_fragment_method"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/fragment_reading_foods_method"
+            style="@style/TextFontNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name" />
+    </LinearLayout>
+</ScrollView>

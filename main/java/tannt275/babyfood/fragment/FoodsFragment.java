@@ -1,5 +1,6 @@
 package tannt275.babyfood.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import tannt275.babyfood.R;
+import tannt275.babyfood.ReadingFoodsActivity;
 import tannt275.babyfood.adapter.FoodsAdapter;
 import tannt275.babyfood.common.AppUtils;
 import tannt275.babyfood.common.Log;
@@ -27,6 +29,7 @@ public class FoodsFragment extends Fragment implements FoodsAdapter.ClickItemFoo
     private FoodsAdapter foodsAdapter;
 
     private String nameTable;
+    private int currentPosition;
 
     public static FoodsFragment newInstance(String nameTable){
         FoodsFragment foodsFragment = new FoodsFragment();
@@ -60,6 +63,7 @@ public class FoodsFragment extends Fragment implements FoodsAdapter.ClickItemFoo
     }
 
     private void initData() {
+
         foodsAdapter = new FoodsAdapter(getActivity(), foodModels);
         foodsAdapter.setClickItemFoods(this);
         recyclerView.setAdapter(foodsAdapter);
@@ -68,5 +72,12 @@ public class FoodsFragment extends Fragment implements FoodsAdapter.ClickItemFoo
     @Override
     public void onClickItemFoods(FoodModel foodModel) {
         Log.e(TAG, "item: " + foodModel.convertToString());
+        currentPosition = foodModels.indexOf(foodModel);
+        Intent toReadingFood = new Intent(getActivity(), ReadingFoodsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(AppUtils.TAG_FOOD_TABLE, nameTable);
+        bundle.putInt(AppUtils.CURRENT_POSITION, currentPosition);
+        toReadingFood.putExtras(bundle);
+        startActivity(toReadingFood);
     }
 }

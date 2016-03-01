@@ -129,7 +129,7 @@ public class ReadingActivity extends AppCompatActivity {
      */
     private void shareContent(AdvicesModel advices){
 
-        String linkAppOnStore = "https://play.google.com/store/apps/details?id="+getPackageName();
+        String linkAppOnStore = "https://play.google.com/store/apps/details?id=" + getPackageName();
 
         Log.e(TAG, "model is: "+ advices.convertToString());
 

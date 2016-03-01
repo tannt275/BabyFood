@@ -5,20 +5,14 @@ package tannt275.babyfood.common;
  */
 public class Log {
 
-    public static boolean DEBUG = AppUtils.IS_DEV_MODE;
-
-    public void setDEBUG(boolean DEBUG) {
-        this.DEBUG = DEBUG;
-    }
-
     public static void e(String tag, String msg) {
-        if (DEBUG) {
+        if (AppUtils.IS_DEV_MODE) {
             android.util.Log.e(tag, msg + "");
         }
     }
 
     public static void d(String tag, String msg) {
-        if (DEBUG) {
+        if (AppUtils.IS_DEV_MODE) {
             android.util.Log.d(tag, msg + "");
         }
     }

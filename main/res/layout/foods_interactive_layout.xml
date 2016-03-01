@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/adjustView"
+        android:layout_width="2dp"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true" />
+
+    <ImageView
+        android:id="@+id/addFoodImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        android:layout_toLeftOf="@id/adjustView"
+        android:src="@mipmap/app_add_icon" />
+
+    <ImageView
+        android:id="@+id/favoriteFoodImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@id/adjustView"
+        android:src="@drawable/favorite_foods_selector" />
+
+    <ImageView
+        android:id="@+id/shareFoodImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/favoriteFoodImage"
+        android:src="@mipmap/app_share_icon" />
+
+    <ImageView
+        android:id="@+id/deleteFoodImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/addFoodImage"
+        android:src="@drawable/delete_advices_selector" />
+
+</RelativeLayout>

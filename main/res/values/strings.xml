@@ -49,4 +49,8 @@
     <string name="title_activity_reading">ReadingActivity</string>
     <string name="title_activity_reading_foods">ReadingFoodsActivity</string>
 
+    <string name="reading_foods_fragment_time_prefix">Thời gian: %1$s</string>
+    <string name="reading_foods_fragment_material">Nguyên liêu</string>
+    <string name="reading_foods_fragment_method">Cách làm </string>
+
 </resources>

@@ -22,8 +22,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        String str = AppUtils.getKeyHashFacebook(this);
-        Log.e("Splash", str);
+        /*String str = AppUtils.getKeyHashFacebook(this);
+        Log.e("Splash", str);*/
         checkAndSaveDataBase();
     }
 
