@@ -44,12 +44,6 @@ public class ReadingActivity extends AppCompatActivity {
             Log.e(TAG, "typeAdvices: " + typeAdvice + " currentPosition: " + currentPosition);
         }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addButton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
         viewPager = (ViewPager) findViewById(R.id.reading_advicesViewPager);
 
         fillData();

@@ -20,10 +20,6 @@ public class ReadingAdvicesFragment extends Fragment {
     public static String TAG = ReadingAdvicesFragment.class.getSimpleName();
     public static String ADVICES_DATA="ADVICES_DATA";
 
-    private ImageView addIcon;
-    private ImageView favoriteIcon;
-    private ImageView shareIcon;
-    private ImageView deleteIcon;
     private ImageView urlAdvices;
     private TextView nameAdvices;
     private TextView contentAdvices;
@@ -49,10 +45,6 @@ public class ReadingAdvicesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_reading_advices, container, false);
-        addIcon = (ImageView) rootView.findViewById(R.id.addImage);
-        favoriteIcon = (ImageView) rootView.findViewById(R.id.favoriteImage);
-        shareIcon = (ImageView) rootView.findViewById(R.id.shareImage);
-        deleteIcon = (ImageView) rootView.findViewById(R.id.deleteImage);
         urlAdvices = (ImageView) rootView.findViewById(R.id.urlAdvices);
         nameAdvices = (TextView) rootView.findViewById(R.id.nameAdvices);
         contentAdvices = (TextView) rootView.findViewById(R.id.contentAdvices);
@@ -65,29 +57,6 @@ public class ReadingAdvicesFragment extends Fragment {
         nameAdvices.setText(advicesModel.get_name());
         contentAdvices.setText(advicesModel.get_content());
 
-        addIcon.setOnClickListener(addToDataListener);
-        deleteIcon.setEnabled(advicesModel.get_admin() == 1);
-        shareIcon.setOnClickListener(shareDataListener);
-        favoriteIcon.setOnClickListener(favoriteListener);
     }
 
-    private View.OnClickListener addToDataListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-        }
-    };
-
-    private View.OnClickListener shareDataListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-        }
-    };
-    private View.OnClickListener favoriteListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-        }
-    };
 }
