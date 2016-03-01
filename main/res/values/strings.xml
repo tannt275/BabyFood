@@ -44,5 +44,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="food_in_week_by_day">Day in Week</string>
+    <string name="title_activity_reading">ReadingActivity</string>
 
 </resources>

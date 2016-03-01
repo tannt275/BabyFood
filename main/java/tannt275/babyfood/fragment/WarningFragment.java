@@ -1,5 +1,6 @@
 package tannt275.babyfood.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import tannt275.babyfood.R;
+import tannt275.babyfood.ReadingActivity;
 import tannt275.babyfood.adapter.AdvicesAdapter;
 import tannt275.babyfood.common.AppUtils;
 import tannt275.babyfood.database.DatabaseHandler;
@@ -53,5 +55,7 @@ public class WarningFragment extends Fragment implements AdvicesAdapter.ClickIte
     @Override
     public void onClickItem(AdvicesModel advicesModel) {
         Log.e(TAG, "click Item: " + advicesModel.convertToString());
+        Intent toReadingActivity = new Intent(getActivity(), ReadingActivity.class);
+        startActivity(toReadingActivity);
     }
 }
