@@ -26,15 +26,15 @@
 
                 <item
                     android:id="@+id/nav_below_8_months"
-                    android:icon="@mipmap/app_splash_icon"
+                    android:icon="@mipmap/app_drawer_8_months"
                     android:title="@string/drawer_foods_below_8_months" />
                 <item
                     android:id="@+id/nav_9_to_11_months"
-                    android:icon="@mipmap/app_splash_icon"
+                    android:icon="@mipmap/app_drawer_9_11_months"
                     android:title="@string/drawer_foods_9_11_months" />
                 <item
                     android:id="@+id/nav_below_15_months"
-                    android:icon="@mipmap/app_splash_icon"
+                    android:icon="@mipmap/app_drawer_15_months"
                     android:title="@string/drawer_foods_15_months" />
             </group>
         </menu>
