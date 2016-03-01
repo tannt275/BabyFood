@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:id="@+id/fragment_foods_itemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fragment_foods_itemName"
+            style="@style/TextFontHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/itemUrl"
+            android:padding="7dp"
+            android:text="@string/app_name"
+            android:textColor="@android:color/holo_red_light" />
+
+        <TextView
+            android:id="@+id/fragment_foods_itemContent"
+            style="@style/TextFontNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/itemHeader"
+            android:ellipsize="end"
+            android:lines="3"
+            android:maxLines="3"
+            android:text="@string/app_name" />
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>

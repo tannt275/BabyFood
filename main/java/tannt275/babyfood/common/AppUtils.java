@@ -31,6 +31,7 @@ public class AppUtils {
     public static String TAG_FORGET = "TAG_FORGET";
     public static String TAG_REMEMBER = "TAG_REMEMBER";
     public static String TAG_FAVORITE = "TAG_FAVORITE";
+    public static String TAG_FOOD_TABLE = "TAG_FOOD_TABLE";
 
     public static String IS_FIRST_USE = "IS_FIRST_USE";
 

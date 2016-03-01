@@ -14,7 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import tannt275.babyfood.common.AppUtils;
 import tannt275.babyfood.fragment.FoodInWeekFragment;
+import tannt275.babyfood.fragment.FoodsFragment;
 import tannt275.babyfood.fragment.NutritionTowerFragment;
 import tannt275.babyfood.fragment.ShouldFragment;
 import tannt275.babyfood.fragment.WarningFragment;
@@ -104,10 +106,6 @@ public class RefineMainActivity extends AppCompatActivity
                 FoodInWeekFragment foodInWeekFragment = new FoodInWeekFragment();
                 displayFragment(foodInWeekFragment);
                 break;
-            case R.id.nav_below_8_months:
-                FoodInWeekFragment foodInWeekFragment2 = new FoodInWeekFragment();
-                displayFragment(foodInWeekFragment2);
-                break;
             case R.id.nav_remember:
                 ShouldFragment shouldFragment = new ShouldFragment();
                 displayFragment(shouldFragment);
@@ -115,6 +113,18 @@ public class RefineMainActivity extends AppCompatActivity
             case R.id.nav_waring:
                 WarningFragment warningFragment = new WarningFragment();
                 displayFragment(warningFragment);
+                break;
+            case R.id.nav_below_8_months:
+                FoodsFragment foodsFragment_below_8_months = FoodsFragment.newInstance(AppUtils.TAG_8MONTHS);
+                displayFragment(foodsFragment_below_8_months);
+                break;
+            case R.id.nav_9_to_11_months:
+                FoodsFragment foodsFragment_9_11_months = FoodsFragment.newInstance(AppUtils.TAG_9MONTHS);
+                displayFragment(foodsFragment_9_11_months);
+                break;
+            case R.id.nav_below_15_months:
+                FoodsFragment foodsFragment_below_15_months = FoodsFragment.newInstance(AppUtils.TAG_15MONTHS);
+                displayFragment(foodsFragment_below_15_months);
                 break;
         }
 
