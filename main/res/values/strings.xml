@@ -2,6 +2,8 @@
     <string name="app_name">Babyfood</string>
     <string name="action_settings">Settings</string>
     <string name="introdution_me">Powered by Sir[Un]</string>
+    
+    <string name="facebook_app_id">168856303496515</string>
 
     <string name="food_in_week_certificate">Thực đơn tham khảo được cung cấp bởi Viện dinh dưỡng.</string>
 

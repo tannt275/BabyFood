@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
+import com.facebook.appevents.AppEventsLogger;
+
+import java.awt.font.TextAttribute;
 
 import tannt275.babyfood.common.AppUtils;
 import tannt275.babyfood.common.FileUtils;
@@ -17,6 +22,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        String str = AppUtils.getKeyHashFacebook(this);
+        Log.e("Splash", str);
         checkAndSaveDataBase();
     }
 
@@ -42,5 +49,11 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         },TIME_DELAY);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AppEventsLogger.activateApp(this);
     }
 }

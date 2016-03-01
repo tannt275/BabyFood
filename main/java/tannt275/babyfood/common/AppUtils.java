@@ -46,6 +46,8 @@ public class AppUtils {
     public static String EDIT_TYPE = "EDIT_TYPE";
     public static String ID_OBJECT_EDIT = "ID_OBJECT_EDIT";
 
+    public static boolean IS_DEV_MODE = true;
+
     /*for save image*/
     public static String IMAGE_DIRECTORY_NAME = "BabyFood";
     public static String IMAGE_NAME_PREFIX = "bf_";
@@ -95,11 +97,5 @@ public class AppUtils {
         return "";
     }
 
-    public static void hideSoftKeyboard(Activity activity){
-        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        View forcus = activity.getCurrentFocus();
-        if (forcus != null){
-            inputMethodManager.hideSoftInputFromWindow(forcus.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-        }
-    }
+
 }

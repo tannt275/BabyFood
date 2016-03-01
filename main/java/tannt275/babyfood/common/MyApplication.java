@@ -3,6 +3,7 @@ package tannt275.babyfood.common;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.FacebookSdk;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -26,6 +27,7 @@ public class MyApplication extends Application {
         super.onCreate();
         context = getApplicationContext();
         initImageLoader(context);
+        FacebookSdk.sdkInitialize(context);
     }
 
     public static void initImageLoader(Context context){
