@@ -110,7 +110,12 @@ public class ReadingActivity extends AppCompatActivity {
     private View.OnClickListener addItemListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            Intent toAddActivity = new Intent(ReadingActivity.this, AddingActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString(AppUtils.DATA_TYPE_ADVICES, typeAdvice);
+            bundle.putString(AppUtils.ADD_TYPE, AppUtils.ADD_ADVICE);
+            toAddActivity.putExtras(bundle);
+            startActivity(toAddActivity);
         }
     };
     private View.OnClickListener deleteItemListener = new View.OnClickListener() {

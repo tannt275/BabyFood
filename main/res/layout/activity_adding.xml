@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbarAdding"
+            android:id="@+id/addingToolBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -48,7 +48,7 @@
                     android:visibility="invisible" />
 
                 <Button
-                    android:id="@+id/captureButton"
+                    android:id="@+id/add_activity_captureButton"
                     style="@style/MessengerButton.White"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,7 +57,6 @@
                     android:paddingRight="10dp"
                     android:text="Choose Photo" />
             </RelativeLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,6 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/add_activity_edittext_selector"
+                    android:focusable="false"
                     android:hint="@string/add_activity_title_hint"
                     android:imeOptions="actionNext"
                     android:inputType="text"
@@ -87,6 +87,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextFontHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="@string/add_activity_foods_time" />
+
+                    <EditText
+                        android:id="@+id/add_activity_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/add_activity_edittext_selector"
+                        android:focusable="false"
+                        android:hint="@string/add_activity_foods_time_hint"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:padding="10dp" />
 
                     <TextView
                         android:id="@+id/add_activity_materialPrefix"
@@ -101,6 +119,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/add_activity_edittext_selector"
+                        android:focusable="false"
                         android:hint="@string/add_activity_material_hint"
                         android:imeOptions="actionNext"
                         android:inputType="text"
@@ -125,6 +144,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/add_activity_edittext_selector"
+                        android:focusable="false"
                         android:hint="@string/add_activity_food_method_hint"
                         android:imeOptions="actionDone"
                         android:inputType="textMultiLine"
@@ -132,6 +152,13 @@
                         android:padding="10dp"
                         android:scrollbars="vertical" />
                 </LinearLayout>
+
+                <Button
+                    style="@style/MessengerButton.White"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/add_activity_save" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

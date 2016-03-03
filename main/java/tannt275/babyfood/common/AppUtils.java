@@ -56,6 +56,10 @@ public class AppUtils {
     public static String DATA_FOOD_IN_WEEK_ITEM = "DATA_FOOD_IN_WEEK_ITEM";
     public static String DATA_TYPE_ADVICES = "DATA_TYPE_ADVICES";
 
+    public static String ADD_TYPE = "ADD_TYPE";
+    public static String ADD_ADVICE = "ADVICE_TYPE";
+    public static String ADD_FOOD = "ADD_FOOD";
+
     public static DisplayImageOptions OPTION_IMAGE = new DisplayImageOptions.Builder()
             .showImageOnLoading(R.mipmap.ic_launcher)
             .showImageForEmptyUri(R.mipmap.ic_launcher)

@@ -107,7 +107,12 @@ public class ReadingFoodsActivity extends AppCompatActivity {
     private View.OnClickListener addItemListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            Intent toAddingActivity = new Intent(ReadingFoodsActivity.this, AddingActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString(AppUtils.ADD_TYPE, AppUtils.ADD_FOOD);
+            bundle.putString(AppUtils.TAG_FOOD_TABLE, nameTable);
+            toAddingActivity.putExtras(bundle);
+            startActivity(toAddingActivity);
         }
     };
     private View.OnClickListener deleteItemListener = new View.OnClickListener() {

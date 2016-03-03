@@ -59,10 +59,18 @@
     <string name="add_activity_foods_name">Tên món ăn</string>
     <string name="add_activity_foods_material">Nguyên liệu</string>
     <string name="add_activity_foods_method">Cách làm</string>
+    <string name="add_activity_foods_time">Thời gian</string>
+    <string name="add_activity_foods_time_hint">Nhập thời gian (phút)</string>
 
     <string name="add_activity_title_hint">Nhập tên</string>
     <string name="add_activity_material_hint">Nhập nguyên liệu</string>
     <string name="add_activity_food_method_hint">Nhập cách làm</string>
     <string name="add_activity_advices_content_hint">Nhập nội dung</string>
+    <string name="add_activity_save">Lưu nội dung</string>
+
+    <string name="dialog_choose_image_title">Chọn ảnh...</string>
+    <string name="dialog_choose_image_capture">Chụp ảnh</string>
+    <string name="dialog_choose_image_gallery">Từ bộ sưu tập</string>
+    <string name="dialog_choose_image_cancel">Bỏ qua</string>
 
 </resources>

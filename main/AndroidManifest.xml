@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+
     <application
         android:name=".common.MyApplication"
         android:allowBackup="true"
@@ -49,8 +50,8 @@
             android:name=".ReadingFoodsActivity"
             android:label="@string/title_activity_reading_foods"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddingActivity">
-
+        <activity android:name=".AddingActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 
