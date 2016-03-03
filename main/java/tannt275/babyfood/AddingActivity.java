@@ -30,6 +30,9 @@ import java.io.IOException;
 
 import tannt275.babyfood.common.AppUtils;
 import tannt275.babyfood.common.Log;
+import tannt275.babyfood.database.DatabaseHandler;
+import tannt275.babyfood.model.AdvicesModel;
+import tannt275.babyfood.model.FoodModel;
 
 public class AddingActivity extends AppCompatActivity {
 
@@ -58,7 +61,7 @@ public class AddingActivity extends AppCompatActivity {
     private int REQUEST_PICK_IMAGE = 998;
 
     private String pathImage;
-
+    private DatabaseHandler databaseHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +84,8 @@ public class AddingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         captureBtn = (Button) findViewById(R.id.add_activity_captureButton);
+        saveBtn = (Button) findViewById(R.id.add_activity_saveBtn);
+
         imagePreView = (ImageView) findViewById(R.id.add_activity_ImagePreview);
         nameItem = (EditText) findViewById(R.id.add_activity_title);
 
@@ -125,7 +130,7 @@ public class AddingActivity extends AppCompatActivity {
                 } else if (TextUtils.isEmpty(method)){
                     showToastEmpty("Nội dung ");
                 } else {
-                    saveAddvice(name, material);
+                    saveAddvice(name, method);
                 }
             } else if (typeAdd.equals(AppUtils.ADD_FOOD)){
                 if (TextUtils.isEmpty(name)){
@@ -144,19 +149,58 @@ public class AddingActivity extends AppCompatActivity {
     };
 
     private void saveFood(String name, String time, String material, String method) {
-        
+
+        FoodModel foodModel = new FoodModel();
+        foodModel.set_admins(2);
+        foodModel.set_timesFood(time + " phút");
+        foodModel.set_nameFood(name);
+        foodModel.set_materialContent(material);
+        foodModel.set_methodContent(method);
+        foodModel.set_favorite(1);
+
+        databaseHandler = new DatabaseHandler(this);
+        databaseHandler.putDataFoods(foodModel, nameTable, new DatabaseHandler.SaveDataBase() {
+            @Override
+            public void saveSuccess() {
+                Toast.makeText(AddingActivity.this, "Lưu món ăn thành công", Toast.LENGTH_SHORT).show();
+                databaseHandler.close();
+            }
+
+            @Override
+            public void saveFail() {
+                Toast.makeText(AddingActivity.this, "Lưu món ăn thất bại", Toast.LENGTH_SHORT).show();
+                databaseHandler.close();
+            }
+        });
+
     }
 
-    private void saveAddvice(String name, String material) {
+    private void saveAddvice(String name, String method) {
 
+        AdvicesModel advicesModel = new AdvicesModel();
+        advicesModel.set_name(name);
+        advicesModel.set_content(method);
+        advicesModel.set_admin(2);
+        advicesModel.set_url(pathImage);
+
+        databaseHandler = new DatabaseHandler(this);
+        databaseHandler.putAdvicesToDB(typeAdvices, advicesModel, new DatabaseHandler.SaveDataBase() {
+            @Override
+            public void saveSuccess() {
+                Toast.makeText(AddingActivity.this, "Lưu thành công", Toast.LENGTH_LONG).show();
+                databaseHandler.close();
+            }
+
+            @Override
+            public void saveFail() {
+                Toast.makeText(AddingActivity.this, "Lưu thất bại", Toast.LENGTH_LONG).show();
+                databaseHandler.close();
+            }
+        });
     }
 
     private void showToastEmpty(String string) {
         Toast.makeText(this, string + " đang để trống", Toast.LENGTH_SHORT).show();
-    }
-
-    private boolean checkReadyEditext(){
-        return false;
     }
 
     View.OnClickListener chooseAPhotoListener = new View.OnClickListener() {

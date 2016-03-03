@@ -1,6 +1,7 @@
 package tannt275.babyfood.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +51,12 @@ public class AdvicesAdapter extends RecyclerView.Adapter<AdviceViewHolder> {
         final AdvicesModel advicesModel = advicesModelList.get(position);
         holder.content.setText(advicesModel.get_content());
         holder.name.setText(advicesModel.get_name());
-        ImageLoader.getInstance().displayImage(advicesModel.get_url(), holder.imageView, AppUtils.OPTION_IMAGE);
+        if (advicesModel.get_admin() ==1){
+            ImageLoader.getInstance().displayImage(advicesModel.get_url(), holder.imageView, AppUtils.OPTION_IMAGE);
+        } else if (advicesModel.get_admin() ==2){
+            ImageLoader.getInstance().displayImage("file://" + advicesModel.get_url(), holder.imageView, AppUtils.OPTION_IMAGE_LOCAL);
+        }
+
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
