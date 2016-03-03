@@ -41,6 +41,7 @@
     <string name="add_image">Add Image</string>
     <string name="delete_image">Delete Image</string>
     <string name="edit_image">Edit Image</string>
+    <string name="add_image_preview">Add Image Preview</string>
     <string name="title_activity_refine_main">RefineMainActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -52,5 +53,16 @@
     <string name="reading_foods_fragment_time_prefix">Thời gian: %1$s</string>
     <string name="reading_foods_fragment_material">Nguyên liêu</string>
     <string name="reading_foods_fragment_method">Cách làm </string>
+
+    <string name="add_activity_title">Tên</string>
+    <string name="add_activity_advices_content">Nội dung</string>
+    <string name="add_activity_foods_name">Tên món ăn</string>
+    <string name="add_activity_foods_material">Nguyên liệu</string>
+    <string name="add_activity_foods_method">Cách làm</string>
+
+    <string name="add_activity_title_hint">Nhập tên</string>
+    <string name="add_activity_material_hint">Nhập nguyên liệu</string>
+    <string name="add_activity_food_method_hint">Nhập cách làm</string>
+    <string name="add_activity_advices_content_hint">Nhập nội dung</string>
 
 </resources>

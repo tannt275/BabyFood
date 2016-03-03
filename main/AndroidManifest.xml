@@ -48,7 +48,10 @@
         <activity
             android:name=".ReadingFoodsActivity"
             android:label="@string/title_activity_reading_foods"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AddingActivity">
+
+        </activity>
     </application>
 
 </manifest>
