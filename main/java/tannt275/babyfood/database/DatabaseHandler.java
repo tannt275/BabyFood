@@ -13,6 +13,7 @@ import java.util.List;
 import tannt275.babyfood.R;
 import tannt275.babyfood.common.AppUtils;
 import tannt275.babyfood.common.FileUtils;
+import tannt275.babyfood.fragment.FoodsFragment;
 import tannt275.babyfood.model.AdvicesModel;
 import tannt275.babyfood.model.FoodsDay;
 import tannt275.babyfood.model.FoodInWeekModel;
@@ -567,6 +568,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 list.add(foodsDay);
             } while (cursor.moveToNext());
         }
+        cursor.close();
+        sqLiteDatabase.close();
+        return list;
+    }
+
+    public List<FoodsDay> getListFoodsDayWithIdOfDay(int _idDay) {
+        List<FoodsDay> list = new ArrayList<>();
+        String[] args = new String[]{String.valueOf(_idDay)};
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_TIME_FOOD + " WHERE " + TIME_FOOD_ID_CAT + "=?", args);
+        if (cursor.moveToFirst()){
+            do {
+                FoodsDay foodsDay = new FoodsDay();
+                foodsDay.set_time(cursor.getString(cursor.getColumnIndexOrThrow(TIME_FOOD_TIME)));
+                foodsDay.set_content(cursor.getString(cursor.getColumnIndexOrThrow(TIME_FOOD_CONTENT)));
+                foodsDay.set_method(cursor.getString(cursor.getColumnIndexOrThrow(TIME_FOOD_METHOD)));
+                list.add(foodsDay);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        sqLiteDatabase.close();
         return list;
     }
 
