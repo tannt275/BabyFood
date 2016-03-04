@@ -20,14 +20,18 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import tannt275.babyfood.R;
 import tannt275.babyfood.common.AppUtils;
+import tannt275.babyfood.common.Log;
 import tannt275.babyfood.database.DatabaseHandler;
 import tannt275.babyfood.model.FoodInWeekModel;
 
 public class FoodInWeekFragment extends Fragment {
+
+    public static String TAG = FoodInWeekFragment.class.getSimpleName();
 
     private ViewPager viewPager;
     private DatabaseHandler databaseHandler;
@@ -59,13 +63,18 @@ public class FoodInWeekFragment extends Fragment {
         listResouce.add(R.mipmap.friday);
         listResouce.add(R.mipmap.saturday);
         listResouce.add(R.mipmap.sunday);
+
         for (int i = 0; i < foodInWeekModelList.size(); i++) {
             FoodInWeekModel foodInWeekModel = foodInWeekModelList.get(i);
             foodInWeekModel.set_idResource(listResouce.get(i));
         }
         adapterFoodInWeek = new AdapterFoodInWeek(getChildFragmentManager(), foodInWeekModelList);
         viewPager.setAdapter(adapterFoodInWeek);
-        viewPager.setCurrentItem(0);
+
+        int day = dayOfWeek();
+
+        viewPager.setCurrentItem(day - 2);
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -82,6 +91,13 @@ public class FoodInWeekFragment extends Fragment {
 
             }
         });
+    }
+
+    private int dayOfWeek() {
+        Calendar calendar = Calendar.getInstance();
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        Log.e(TAG, "day of week is: " + dayOfWeek);
+        return dayOfWeek;
     }
 
     public static class FoodInWeekFragmentItem extends Fragment {
