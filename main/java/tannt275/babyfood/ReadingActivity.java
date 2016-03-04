@@ -85,8 +85,7 @@ public class ReadingActivity extends AppCompatActivity {
         deleteImage.setOnClickListener(deleteItemListener);
         shareImage.setOnClickListener(shareItemListener);
 
-        deleteImage.setEnabled(advicesModelList.get(viewPager.getCurrentItem()).get_admin() == 1);
-
+        checkImageDelete(advicesModelList.get(viewPager.getCurrentItem()));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -96,7 +95,8 @@ public class ReadingActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 advicesModel = advicesModelList.get(viewPager.getCurrentItem());
-                deleteImage.setEnabled(advicesModel.get_admin() == 1);
+                Log.e(TAG, "item display when viewpager selected: " + advicesModel.convertToString());
+                checkImageDelete(advicesModel);
             }
 
             @Override
@@ -105,6 +105,12 @@ public class ReadingActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void checkImageDelete(AdvicesModel item){
+
+        deleteImage.setImageResource(item.get_admin() == 1 ? R.mipmap.app_delete_deactive_icon : R.mipmap.app_delete_active_icon);
+        deleteImage.setEnabled((item.get_admin() == 2));
     }
 
     private View.OnClickListener addItemListener = new View.OnClickListener() {

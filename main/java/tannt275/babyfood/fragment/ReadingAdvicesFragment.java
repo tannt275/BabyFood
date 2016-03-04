@@ -54,7 +54,12 @@ public class ReadingAdvicesFragment extends Fragment {
     }
 
     private void fillData() {
-        ImageLoader.getInstance().displayImage(advicesModel.get_url(), urlAdvices, AppUtils.OPTION_IMAGE);
+        /*if (advicesModel.get_admin() ==1 ){
+
+            ImageLoader.getInstance().displayImage(advicesModel.get_url(), urlAdvices, AppUtils.OPTION_IMAGE);
+        } else if (advicesModel.get_admin() == 2){
+        }*/
+        ImageLoader.getInstance().displayImage((advicesModel.get_admin() == 1) ? advicesModel.get_url():"file://" + advicesModel.get_url(),urlAdvices,AppUtils.OPTION_IMAGE  );
         nameAdvices.setText(advicesModel.get_name());
         contentAdvices.setText(advicesModel.get_content());
 
