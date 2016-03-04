@@ -23,6 +23,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -57,6 +59,8 @@ public class AddingActivity extends AppCompatActivity {
     private String nameTable;
     private String typeAdvices;
     private String typeAdd;
+    private int typeModifiedFood;
+    private FoodModel foodModel;
 
     private Dialog dialog;
     private int REQUEST_CAMERA = 999;
@@ -79,6 +83,11 @@ public class AddingActivity extends AppCompatActivity {
                 Log.e(TAG, "type addvices: " + typeAdvices);
             } else if (typeAdd.equals(AppUtils.ADD_FOOD)) {
                 nameTable = bundle.getString(AppUtils.TAG_FOOD_TABLE);
+                typeModifiedFood = bundle.getInt(AppUtils.MODIFIED_FOOD);
+                if (typeModifiedFood == AppUtils.ADD_OLD_FOOD) {
+                    foodModel = new Gson().fromJson(bundle.getString(AppUtils.MODIFIED_FOOD_DATA), FoodModel.class);
+                    Log.e(TAG, "datafood get: " + foodModel.convertToString());
+                }
                 Log.e(TAG, "name table for add: " + nameTable);
             }
         }
@@ -117,10 +126,16 @@ public class AddingActivity extends AppCompatActivity {
             imageLayout.setVisibility(View.VISIBLE);
             materialLayout.setVisibility(View.GONE);
             methodPrefix.setText(getString(R.string.add_activity_advices_content));
-        } else {
+        } else if (typeAdd.equals(AppUtils.ADD_FOOD)) {
             materialLayout.setVisibility(View.VISIBLE);
             methodPrefix.setText(getString(R.string.add_activity_foods_method));
             imageLayout.setVisibility(View.GONE);
+            if (typeModifiedFood == AppUtils.ADD_OLD_FOOD) {
+                nameItem.setText(foodModel.get_nameFood());
+                timeItem.setText(foodModel.get_timesFood());
+                materialItem.setText(foodModel.get_materialContent());
+                methodItem.setText(foodModel.get_methodContent());
+            }
         }
     }
 

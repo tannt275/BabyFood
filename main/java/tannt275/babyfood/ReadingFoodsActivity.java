@@ -33,6 +33,7 @@ public class ReadingFoodsActivity extends AppCompatActivity {
     private ImageView deleteImage;
     private ImageView favoriteImage;
     private ImageView shareImage;
+    private ImageView editImage;
     private ViewPager viewPager;
 
     private ReadingFoodsAdapter readingFoodsAdapter;
@@ -68,6 +69,7 @@ public class ReadingFoodsActivity extends AppCompatActivity {
         deleteImage = (ImageView) findViewById(R.id.deleteFoodImage);
         favoriteImage = (ImageView) findViewById(R.id.favoriteFoodImage);
         shareImage = (ImageView) findViewById(R.id.shareFoodImage);
+        editImage = (ImageView) findViewById(R.id.editFoodImage);
         viewPager = (ViewPager) findViewById(R.id.readingFoodsViewPager);
 
         fillData();
@@ -108,7 +110,23 @@ public class ReadingFoodsActivity extends AppCompatActivity {
         deleteImage.setOnClickListener(deleteItemListener);
         favoriteImage.setOnClickListener(favoriteItemListener);
         shareImage.setOnClickListener(shareItemListener);
+        editImage.setOnClickListener(editItemListener);
     }
+
+    private View.OnClickListener editItemListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent toAddActivity = new Intent(ReadingFoodsActivity.this, AddingActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString(AppUtils.ADD_TYPE, AppUtils.ADD_FOOD);
+            bundle.putString(AppUtils.TAG_FOOD_TABLE, nameTable);
+            bundle.putInt(AppUtils.MODIFIED_FOOD, AppUtils.ADD_OLD_FOOD);
+            bundle.putString(AppUtils.MODIFIED_FOOD_DATA, foodModel.convertToString());
+            Log.e(TAG, "data food push: " + foodModel.convertToString());
+            toAddActivity.putExtras(bundle);
+            startActivity(toAddActivity);
+        }
+    };
 
     private View.OnClickListener addItemListener = new View.OnClickListener() {
         @Override
@@ -117,6 +135,7 @@ public class ReadingFoodsActivity extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putString(AppUtils.ADD_TYPE, AppUtils.ADD_FOOD);
             bundle.putString(AppUtils.TAG_FOOD_TABLE, nameTable);
+            bundle.putInt(AppUtils.MODIFIED_FOOD, AppUtils.ADD_NEW_FOOD);
             toAddingActivity.putExtras(bundle);
             startActivity(toAddingActivity);
         }
@@ -145,7 +164,7 @@ public class ReadingFoodsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             databaseHandler = new DatabaseHandler(ReadingFoodsActivity.this);
-            foodModel.set_favorite(foodModel.get_favorite() == 1 ? 2: 1 );
+            foodModel.set_favorite(foodModel.get_favorite() == 1 ? 2 : 1);
             databaseHandler.updateFavorite(ReadingFoodsActivity.this, nameTable, foodModel);
             checkStateButton(foodModel);
         }
@@ -198,6 +217,9 @@ public class ReadingFoodsActivity extends AppCompatActivity {
         deleteImage.setEnabled(foods.get_admins() == 2);
 
         favoriteImage.setImageResource(foods.get_favorite() == 1 ? R.mipmap.app_favorite_deactive_icon : R.mipmap.app_favorite_active_icon);
+
+        editImage.setImageResource(foods.get_admins() == 1 ? R.mipmap.app_edit_deactive_icon : R.mipmap.app_edit_active_icon);
+        editImage.setEnabled(foods.get_admins() == 2);
     }
 
     @Override

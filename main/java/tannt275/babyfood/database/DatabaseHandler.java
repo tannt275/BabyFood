@@ -296,12 +296,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(FOOD_KEY_FAVORITE, foodModel.get_favorite());
 
-       /* if (stateInteractive == AppUtils.ADD_FAVORITE) {
-            contentValues.put(FOOD_KEY_FAVORITE, 1);
-        } else if (stateInteractive == AppUtils.REMOVE_FAVORITE) {
-            contentValues.put(FOOD_KEY_FAVORITE, 2);
-        }*/
-
         long d = 0;
         if (tableName.equals(AppUtils.TAG_8MONTHS)) {
 

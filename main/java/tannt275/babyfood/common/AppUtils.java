@@ -37,15 +37,6 @@ public class AppUtils {
 
     public static String CURRENT_POSITION = "CURRENT_POSITION";
 
-    public static int ADD_FAVORITE = 1;
-    public static int REMOVE_FAVORITE = 2;
-
-    /*for edit type in EditActivity*/
-    public static int EDIT_TYPE_ADVICES = 1;
-    public static int EDIT_TYPE_FOOD = 2;
-    public static String EDIT_TYPE = "EDIT_TYPE";
-    public static String ID_OBJECT_EDIT = "ID_OBJECT_EDIT";
-
     public static boolean IS_DEV_MODE = true;
 
     /*for save image*/
@@ -59,6 +50,11 @@ public class AppUtils {
     public static String ADD_TYPE = "ADD_TYPE";
     public static String ADD_ADVICE = "ADVICE_TYPE";
     public static String ADD_FOOD = "ADD_FOOD";
+    public static String MODIFIED_FOOD = "EDIT_FOOD";
+    public static String MODIFIED_FOOD_DATA = "MODIFIED_FOOD_DATA";
+
+    public static int ADD_NEW_FOOD = 999;
+    public static int ADD_OLD_FOOD = 998;
 
     public static DisplayImageOptions OPTION_IMAGE = new DisplayImageOptions.Builder()
             .showImageOnLoading(R.mipmap.ic_launcher)
