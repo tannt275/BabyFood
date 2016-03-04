@@ -73,4 +73,7 @@
     <string name="dialog_choose_image_gallery">Từ bộ sưu tập</string>
     <string name="dialog_choose_image_cancel">Bỏ qua</string>
 
+    <string name="delete_data_success">Xóa dữ liệu thành công!</string>
+    <string name="delete_data_fail">Xóa dữ liệu thất bại!</string>
+
 </resources>

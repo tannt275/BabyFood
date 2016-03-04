@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -92,6 +93,7 @@ public class ReadingFoodsActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 foodModel = foodModelsList.get(position);
+                Log.e(TAG, "item when viewpager selected: " + foodModel.convertToString());
                 checkStateButton(foodModel);
             }
 
@@ -100,6 +102,8 @@ public class ReadingFoodsActivity extends AppCompatActivity {
 
             }
         });
+        databaseHandler.close();
+
         addImage.setOnClickListener(addItemListener);
         deleteImage.setOnClickListener(deleteItemListener);
         favoriteImage.setOnClickListener(favoriteItemListener);
@@ -117,16 +121,33 @@ public class ReadingFoodsActivity extends AppCompatActivity {
             startActivity(toAddingActivity);
         }
     };
+
     private View.OnClickListener deleteItemListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            databaseHandler = new DatabaseHandler(ReadingFoodsActivity.this);
+            databaseHandler.deleteObjectFromDataBase(foodModel, nameTable, new DatabaseHandler.SaveDataBase() {
+                @Override
+                public void saveSuccess() {
+                    Toast.makeText(ReadingFoodsActivity.this, getString(R.string.delete_data_success), Toast.LENGTH_SHORT).show();
+                    databaseHandler.close();
+                }
 
+                @Override
+                public void saveFail() {
+                    Toast.makeText(ReadingFoodsActivity.this, getString(R.string.delete_data_success), Toast.LENGTH_SHORT).show();
+                    databaseHandler.close();
+                }
+            });
         }
     };
     private View.OnClickListener favoriteItemListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            databaseHandler = new DatabaseHandler(ReadingFoodsActivity.this);
+            foodModel.set_favorite(foodModel.get_favorite() == 1 ? 2: 1 );
+            databaseHandler.updateFavorite(ReadingFoodsActivity.this, nameTable, foodModel);
+            checkStateButton(foodModel);
         }
     };
     private View.OnClickListener shareItemListener = new View.OnClickListener() {
@@ -138,6 +159,7 @@ public class ReadingFoodsActivity extends AppCompatActivity {
 
     /**
      * share content to facebook
+     *
      * @param food
      */
     private void onShareContent(FoodModel food) {
@@ -176,7 +198,6 @@ public class ReadingFoodsActivity extends AppCompatActivity {
         deleteImage.setEnabled(foods.get_admins() == 2);
 
         favoriteImage.setImageResource(foods.get_favorite() == 1 ? R.mipmap.app_favorite_deactive_icon : R.mipmap.app_favorite_active_icon);
-        favoriteImage.setEnabled(foods.get_favorite() != 1);
     }
 
     @Override

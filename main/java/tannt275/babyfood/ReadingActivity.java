@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -105,6 +106,8 @@ public class ReadingActivity extends AppCompatActivity {
             }
         });
 
+        databaseHandler.close();
+
     }
 
     private void checkImageDelete(AdvicesModel item){
@@ -128,6 +131,20 @@ public class ReadingActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
+            databaseHandler = new DatabaseHandler(ReadingActivity.this);
+            databaseHandler.deleteObjectFromDataBase(advicesModel, typeAdvice, new DatabaseHandler.SaveDataBase() {
+                @Override
+                public void saveSuccess() {
+                    Toast.makeText(ReadingActivity.this, getString(R.string.delete_data_success), Toast.LENGTH_SHORT).show();
+                    databaseHandler.close();
+                }
+
+                @Override
+                public void saveFail() {
+                    Toast.makeText(ReadingActivity.this, getString(R.string.delete_data_fail), Toast.LENGTH_SHORT).show();
+                    databaseHandler.close();
+                }
+            });
         }
     };
     private View.OnClickListener shareItemListener = new View.OnClickListener() {

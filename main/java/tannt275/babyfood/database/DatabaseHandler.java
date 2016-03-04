@@ -116,18 +116,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * get food was add favorite
+     *
      * @return
      */
-    public ArrayList<FoodModel> getListFavorite(){
+    public ArrayList<FoodModel> getListFavorite() {
         ArrayList<FoodModel> list = new ArrayList<>();
         SQLiteDatabase database = this.getReadableDatabase();
         String queryInTable8Months = "SELECT * FROM " + TABLE_8_MONTHS;
         Cursor cursor8Months = database.rawQuery(queryInTable8Months, null);
-        if (cursor8Months.moveToFirst()){
+        if (cursor8Months.moveToFirst()) {
             do {
                 FoodModel foodModel = new FoodModel();
                 int stateFavorite = cursor8Months.getInt(cursor8Months.getColumnIndexOrThrow(FOOD_KEY_FAVORITE));
-                if (stateFavorite == 1){
+                if (stateFavorite == 1) {
                     foodModel.set_id(cursor8Months.getInt(cursor8Months.getColumnIndexOrThrow(FOOD_KEY_ID)));
                     foodModel.set_admins(cursor8Months.getInt(cursor8Months.getColumnIndexOrThrow(FOOD_KEY_ADMIN)));
                     foodModel.set_favorite(cursor8Months.getInt(cursor8Months.getColumnIndexOrThrow(FOOD_KEY_FAVORITE)));
@@ -142,11 +143,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor8Months.close();
         String query9Months = "SELECT * FROM " + TABLE_9_TO_11_MONTHS;
         Cursor cursor9Months = database.rawQuery(query9Months, null);
-        if (cursor9Months.moveToFirst()){
+        if (cursor9Months.moveToFirst()) {
             do {
                 FoodModel foodModel = new FoodModel();
                 int stateFavorite = cursor9Months.getInt(cursor9Months.getColumnIndexOrThrow(FOOD_KEY_FAVORITE));
-                if (stateFavorite == 1){
+                if (stateFavorite == 1) {
                     foodModel.set_id(cursor9Months.getInt(cursor9Months.getColumnIndexOrThrow(FOOD_KEY_ID)));
                     foodModel.set_admins(cursor9Months.getInt(cursor9Months.getColumnIndexOrThrow(FOOD_KEY_ADMIN)));
                     foodModel.set_favorite(cursor9Months.getInt(cursor9Months.getColumnIndexOrThrow(FOOD_KEY_FAVORITE)));
@@ -161,11 +162,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor9Months.close();
         String query15Months = "SELECT * FROM " + TABLE_15_MONTHS;
         Cursor cursor15Months = database.rawQuery(query15Months, null);
-        if (cursor15Months.moveToFirst()){
+        if (cursor15Months.moveToFirst()) {
             do {
                 FoodModel FoodModel = new FoodModel();
                 int stateFavorite = cursor15Months.getInt(cursor15Months.getColumnIndexOrThrow(FOOD_KEY_FAVORITE));
-                if (stateFavorite == 1){
+                if (stateFavorite == 1) {
                     FoodModel.set_id(cursor15Months.getInt(cursor15Months.getColumnIndexOrThrow(FOOD_KEY_ID)));
                     FoodModel.set_admins(cursor15Months.getInt(cursor15Months.getColumnIndexOrThrow(FOOD_KEY_ADMIN)));
                     FoodModel.set_favorite(cursor15Months.getInt(cursor15Months.getColumnIndexOrThrow(FOOD_KEY_FAVORITE)));
@@ -183,24 +184,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * get food by tag
+     *
      * @param params
      * @return
      */
-    public ArrayList<FoodModel> getFoods(String params){
+    public ArrayList<FoodModel> getFoods(String params) {
 
         SQLiteDatabase database = this.getReadableDatabase();
         ArrayList<FoodModel> list = new ArrayList<>();
         String query = "SELECT * FROM ";
 
-        if (params.equals(AppUtils.TAG_8MONTHS)){
-             query += TABLE_8_MONTHS;
-        } else if (params.equals(AppUtils.TAG_9MONTHS)){
+        if (params.equals(AppUtils.TAG_8MONTHS)) {
+            query += TABLE_8_MONTHS;
+        } else if (params.equals(AppUtils.TAG_9MONTHS)) {
             query += TABLE_9_TO_11_MONTHS;
-        } else if (params.equals(AppUtils.TAG_15MONTHS)){
+        } else if (params.equals(AppUtils.TAG_15MONTHS)) {
             query += TABLE_15_MONTHS;
         }
-         Cursor cursor = database.rawQuery(query, null);
-        if (cursor.moveToFirst()){
+        Cursor cursor = database.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
             do {
                 FoodModel FoodModel = new FoodModel();
                 FoodModel.set_nameFood(cursor.getString(cursor.getColumnIndexOrThrow(FOOD_KEY_NAME)));
@@ -209,6 +211,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 FoodModel.set_timesFood(cursor.getString(cursor.getColumnIndexOrThrow(FOOD_KEY_TIME)));
                 FoodModel.set_admins(cursor.getInt(cursor.getColumnIndexOrThrow(FOOD_KEY_ADMIN)));
                 FoodModel.set_id(cursor.getInt(cursor.getColumnIndexOrThrow(FOOD_KEY_ID)));
+                FoodModel.set_favorite(cursor.getInt(cursor.getColumnIndexOrThrow(FOOD_KEY_FAVORITE)));
                 list.add(FoodModel);
             } while (cursor.moveToNext());
         }
@@ -219,6 +222,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * get count food for each table
+     *
      * @param tableName
      * @return
      */
@@ -242,6 +246,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * add food to database
+     *
      * @param food
      * @param tableName
      * @param callBack
@@ -279,37 +284,39 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * update state favorite in table
+     *
      * @param tableName
-     * @param  foodModel
+     * @param foodModel
      */
-    public void updateFavorite(Context context, String tableName, FoodModel foodModel, int stateInteractive){
+    public void updateFavorite(Context context, String tableName, FoodModel foodModel) {
 
         SQLiteDatabase database = this.getWritableDatabase();
         int _idFood = foodModel.get_id();
 
         ContentValues contentValues = new ContentValues();
+        contentValues.put(FOOD_KEY_FAVORITE, foodModel.get_favorite());
 
-        if (stateInteractive == AppUtils.ADD_FAVORITE){
+       /* if (stateInteractive == AppUtils.ADD_FAVORITE) {
             contentValues.put(FOOD_KEY_FAVORITE, 1);
-        } else if (stateInteractive == AppUtils.REMOVE_FAVORITE){
+        } else if (stateInteractive == AppUtils.REMOVE_FAVORITE) {
             contentValues.put(FOOD_KEY_FAVORITE, 2);
-        }
+        }*/
 
         long d = 0;
-        if (tableName.equals(AppUtils.TAG_8MONTHS)){
+        if (tableName.equals(AppUtils.TAG_8MONTHS)) {
 
-            d = database.update(TABLE_8_MONTHS, contentValues, FOOD_KEY_ID + "=?", new String []{String.valueOf(_idFood)});
+            d = database.update(TABLE_8_MONTHS, contentValues, FOOD_KEY_ID + "=?", new String[]{String.valueOf(_idFood)});
 
-        } else if (tableName.equals(AppUtils.TAG_9MONTHS)){
+        } else if (tableName.equals(AppUtils.TAG_9MONTHS)) {
 
-            d = database.update(TABLE_9_TO_11_MONTHS, contentValues, FOOD_KEY_ID + "=?", new String []{String.valueOf(_idFood)});
+            d = database.update(TABLE_9_TO_11_MONTHS, contentValues, FOOD_KEY_ID + "=?", new String[]{String.valueOf(_idFood)});
 
-        } else if (tableName.equals(AppUtils.TAG_15MONTHS)){
+        } else if (tableName.equals(AppUtils.TAG_15MONTHS)) {
 
-            d = database.update(TABLE_15_MONTHS, contentValues, FOOD_KEY_ID + "=?", new String []{String.valueOf(_idFood)});
+            d = database.update(TABLE_15_MONTHS, contentValues, FOOD_KEY_ID + "=?", new String[]{String.valueOf(_idFood)});
 
         }
-        if (d > 0){
+        if (d > 0) {
             Toast.makeText(context, context.getString(R.string.update_favorite_success), Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(context, context.getString(R.string.update_favorite_fail), Toast.LENGTH_LONG).show();
@@ -318,6 +325,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * get advices in database
+     *
      * @param typeAdvices
      * @return
      */
@@ -350,6 +358,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * get food by week
+     *
      * @return
      */
     public ArrayList<FoodInWeekModel> getFoodInWeek() {
@@ -400,15 +409,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * insert Advices to database
+     *
      * @param typeAdvices
      * @param advices
      * @param callBack
      */
-    public void putAdvicesToDB(String typeAdvices, AdvicesModel advices, SaveDataBase callBack){
+    public void putAdvicesToDB(String typeAdvices, AdvicesModel advices, SaveDataBase callBack) {
         String selectTable = "";
-        if (typeAdvices.equals(AppUtils.TAG_REMEMBER)){
+        if (typeAdvices.equals(AppUtils.TAG_REMEMBER)) {
             selectTable = TABLE_REMEMBER;
-        } else if (typeAdvices.equals(AppUtils.TAG_FORGET)){
+        } else if (typeAdvices.equals(AppUtils.TAG_FORGET)) {
             selectTable = TABLE_FORGET;
         }
 
@@ -432,51 +442,64 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * delete food or advice with admins = 2
+     *
      * @param object
      * @param typeName
      * @param callBack
      */
-    public void deleteObjectFromDataBase(Object object, String typeName, SaveDataBase callBack){
+    public void deleteObjectFromDataBase(Object object, String typeName, SaveDataBase callBack) {
         String table = "";
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        if (object instanceof AdvicesModel){
-            if (typeName.equals(AppUtils.TAG_FORGET)){
+        if (object instanceof AdvicesModel) {
+            if (typeName.equals(AppUtils.TAG_FORGET)) {
                 table = TABLE_FORGET;
-            } else  if (typeName.equals(AppUtils.TAG_REMEMBER)){
+            } else if (typeName.equals(AppUtils.TAG_REMEMBER)) {
                 table = TABLE_REMEMBER;
             }
-//            callBack.saveFail();
-            long d = sqLiteDatabase.delete(table, NOTE_KEY_ID + "=?", new String []{String.valueOf(((AdvicesModel) object).get_id())});
-            if (d>0){
+            long d = sqLiteDatabase.delete(table, NOTE_KEY_ID + "=?", new String[]{String.valueOf(((AdvicesModel) object).get_id())});
+            if (d > 0) {
                 callBack.saveSuccess();
             } else {
                 callBack.saveFail();
             }
-        } else if (object instanceof FoodModel){
+        } else if (object instanceof FoodModel) {
             //TODO delete food
+            if (typeName.equals(AppUtils.TAG_8MONTHS)) {
+                table = TABLE_8_MONTHS;
+            } else if (typeName.equals(AppUtils.TAG_9MONTHS)) {
+                table = TABLE_9_TO_11_MONTHS;
+            } else if (typeName.equals(AppUtils.TAG_15MONTHS)) {
+                table = TABLE_15_MONTHS;
+            }
+            long d = sqLiteDatabase.delete(table, FOOD_KEY_ID + "=?", new String[]{String.valueOf(((FoodModel) object).get_id())});
+            if (d > 0)
+                callBack.saveSuccess();
+            else
+                callBack.saveFail();
         }
 
     }
 
     /**
      * get Object MAddvice with id and name table
+     *
      * @param _id
      * @param nameTable
      * @return
      */
-    public AdvicesModel getAdviceWithID(int _id, String nameTable){
+    public AdvicesModel getAdviceWithID(int _id, String nameTable) {
         AdvicesModel mAdvices = new AdvicesModel();
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String queryCondition = "SELECT * FROM ";
         if (nameTable.equals(AppUtils.TAG_FORGET)) {
             queryCondition += TABLE_FORGET;
-        } else if (nameTable.equals(AppUtils.TAG_REMEMBER)){
+        } else if (nameTable.equals(AppUtils.TAG_REMEMBER)) {
             queryCondition += TABLE_REMEMBER;
         }
         Cursor cursor = sqLiteDatabase.rawQuery(queryCondition, null);
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             do {
-                if (cursor.getInt(cursor.getColumnIndexOrThrow(NOTE_KEY_ID)) == _id){
+                if (cursor.getInt(cursor.getColumnIndexOrThrow(NOTE_KEY_ID)) == _id) {
                     mAdvices.set_id(_id);
                     mAdvices.set_admin(cursor.getInt(cursor.getColumnIndexOrThrow(NOTE_KEY_ADMIN)));
                     mAdvices.set_name(cursor.getString(cursor.getColumnIndexOrThrow(NOTE_KEY_NAME)));
@@ -491,17 +514,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * update Advice to table
+     *
      * @param advices
      * @param nameTable
      * @param callBack
      */
-    public void updateAdvice(AdvicesModel advices, String nameTable, SaveDataBase callBack){
+    public void updateAdvice(AdvicesModel advices, String nameTable, SaveDataBase callBack) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         String table = "";
-        if (nameTable.equals(AppUtils.TAG_FORGET)){
+        if (nameTable.equals(AppUtils.TAG_FORGET)) {
             table = TABLE_FORGET;
-        } else if (nameTable.equals(AppUtils.TAG_REMEMBER)){
+        } else if (nameTable.equals(AppUtils.TAG_REMEMBER)) {
             table = TABLE_REMEMBER;
         }
         contentValues.put(NOTE_KEY_ID, advices.get_id());
@@ -509,9 +533,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         contentValues.put(NOTE_KEY_NAME, advices.get_name());
         contentValues.put(NOTE_KEY_CONTENT, advices.get_content());
         contentValues.put(NOTE_KEY_URL, advices.get_url());
-        long d = database.update(table, contentValues, NOTE_KEY_ID + "=?", new String []{String.valueOf(advices.get_id())});
+        long d = database.update(table, contentValues, NOTE_KEY_ID + "=?", new String[]{String.valueOf(advices.get_id())});
 
-        if (d > 0){
+        if (d > 0) {
             callBack.saveSuccess();
         } else {
             callBack.saveFail();
