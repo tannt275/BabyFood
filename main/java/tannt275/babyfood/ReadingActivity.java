@@ -85,7 +85,7 @@ public class ReadingActivity extends AppCompatActivity {
         deleteImage.setOnClickListener(deleteItemListener);
         shareImage.setOnClickListener(shareItemListener);
 
-        checkImageDelete(advicesModelList.get(viewPager.getCurrentItem()));
+        checkImageDelete(advicesModelList.get(currentPosition));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

@@ -101,6 +101,7 @@ public class AddingActivity extends AppCompatActivity {
         timeItem = (EditText) findViewById(R.id.add_activity_time);
 
         nameItem.setOnTouchListener(touchEdittextListener);
+        timeItem.setOnTouchListener(touchEdittextListener);
         materialItem.setOnTouchListener(touchEdittextListener);
         methodItem.setOnTouchListener(touchEdittextListener);
         captureBtn.setOnClickListener(chooseAPhotoListener);
@@ -156,7 +157,7 @@ public class AddingActivity extends AppCompatActivity {
         }
     };
 
-    private void saveFood(String name, String time, String material, String method) {
+    private void saveFood(String name, String time, final String material, String method) {
 
         FoodModel foodModel = new FoodModel();
         foodModel.set_admins(2);
@@ -171,6 +172,10 @@ public class AddingActivity extends AppCompatActivity {
             @Override
             public void saveSuccess() {
                 Toast.makeText(AddingActivity.this, "Lưu món ăn thành công", Toast.LENGTH_SHORT).show();
+                timeItem.setText("");
+                nameItem.setText("");
+                materialItem.setText("");
+                methodItem.setText("");
                 databaseHandler.close();
             }
 
@@ -196,6 +201,8 @@ public class AddingActivity extends AppCompatActivity {
             @Override
             public void saveSuccess() {
                 Toast.makeText(AddingActivity.this, "Lưu thành công", Toast.LENGTH_LONG).show();
+                timeItem.setText("");
+                methodItem.setText("");
                 databaseHandler.close();
             }
 

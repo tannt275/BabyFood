@@ -81,6 +81,8 @@ public class ReadingFoodsActivity extends AppCompatActivity {
         viewPager.setAdapter(readingFoodsAdapter);
         viewPager.setCurrentItem(currentPosition);
 
+        checkStateButton(foodModelsList.get(currentPosition));
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -169,7 +171,12 @@ public class ReadingFoodsActivity extends AppCompatActivity {
     }
 
     private void checkStateButton(FoodModel foods) {
-        deleteImage.setEnabled(foods.get_admins() == 1);
+
+        deleteImage.setImageResource(foods.get_admins() == 1 ? R.mipmap.app_delete_deactive_icon : R.mipmap.app_delete_active_icon);
+        deleteImage.setEnabled(foods.get_admins() == 2);
+
+        favoriteImage.setImageResource(foods.get_favorite() == 1 ? R.mipmap.app_favorite_deactive_icon : R.mipmap.app_favorite_active_icon);
+        favoriteImage.setEnabled(foods.get_favorite() != 1);
     }
 
     @Override
