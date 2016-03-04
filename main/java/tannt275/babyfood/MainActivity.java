@@ -14,15 +14,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.awt.font.TextAttribute;
+import java.util.List;
+
 import tannt275.babyfood.common.AppUtils;
+import tannt275.babyfood.common.Log;
+import tannt275.babyfood.database.DatabaseHandler;
 import tannt275.babyfood.fragment.FoodInWeekFragment;
 import tannt275.babyfood.fragment.FoodsFragment;
 import tannt275.babyfood.fragment.NutritionTowerFragment;
 import tannt275.babyfood.fragment.ShouldFragment;
 import tannt275.babyfood.fragment.WarningFragment;
+import tannt275.babyfood.model.FoodsDay;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,7 @@ public class MainActivity extends AppCompatActivity
 
         NutritionTowerFragment nutritionTowerFragment = new NutritionTowerFragment();
         displayFragment(nutritionTowerFragment);
+
     }
 
     private void displayFragment(Fragment fragment) {

@@ -8,14 +8,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import tannt275.babyfood.R;
 import tannt275.babyfood.common.AppUtils;
 import tannt275.babyfood.common.FileUtils;
 import tannt275.babyfood.model.AdvicesModel;
+import tannt275.babyfood.model.FoodsDay;
 import tannt275.babyfood.model.FoodInWeekModel;
 import tannt275.babyfood.model.FoodModel;
-import tannt275.babyfood.model.NutritionTowerModel;
 
 /**
  * Created by Administrator on 09/09/2015.
@@ -31,6 +32,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static String TABLE_REMEMBER = "remember";
     private static String TABLE_FOOD_IN_WEEK = "food_in_week";
     private static String TABLE_NUTRITION_TOWER = "nutrition_tower";
+    private static String TABLE_TIME_FOOD = "time_foods";
 
     /*common variables*/
     private static String FOOD_KEY_ID = "id";
@@ -53,6 +55,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static String FOOD_WEEK_DAY = "day";
     private static String FOOD_WEEK_CONTENT = "content";
 
+    /*variable time foods*/
+    private static String TIME_FOOD_ID = "_id";
+    private static String TIME_FOOD_ID_CAT = "_idCategory";
+    private static String TIME_FOOD_TIME = "_time";
+    private static String TIME_FOOD_CONTENT = "_content";
+    private static String TIME_FOOD_METHOD = "_method";
+
     public static int DATABASE_VERSION = 1;
     public static String DATABASE_PATH = "";
 
@@ -67,38 +76,41 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        String CREAT_TABLE_8_MONTHS = "CREATE TABLE IF NOT EXISTS " + TABLE_8_MONTHS + "(" + FOOD_KEY_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
+        String CREATE_TABLE_8_MONTHS = "CREATE TABLE IF NOT EXISTS " + TABLE_8_MONTHS + "(" + FOOD_KEY_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
                 + FOOD_KEY_NAME + " TEXT, " + FOOD_KEY_MATERIAL + " TEXT, " + FOOD_KEY_METHOD + " TEXT, " + FOOD_KEY_TIME + " TEXT, "
                 + FOOD_KEY_ADMIN + " INTEGER, " + FOOD_KEY_FAVORITE + " INTEGER)";
 
-        String CREAT_TABLE_9_TO_11_MONTHS = "CREATE TABLE IF NOT EXISTS " + TABLE_9_TO_11_MONTHS + "(" + FOOD_KEY_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
+        String CREATE_TABLE_9_TO_11_MONTHS = "CREATE TABLE IF NOT EXISTS " + TABLE_9_TO_11_MONTHS + "(" + FOOD_KEY_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
                 + FOOD_KEY_NAME + " TEXT, " + FOOD_KEY_MATERIAL + " TEXT, " + FOOD_KEY_METHOD + " TEXT, " + FOOD_KEY_TIME + " TEXT, "
                 + FOOD_KEY_ADMIN + " INTEGER, " + FOOD_KEY_FAVORITE + " TEXT)";
 
-        String CREAT_TABLE_15_MONTHS = "CREATE TABLE IF NOT EXISTS " + TABLE_15_MONTHS + "(" + FOOD_KEY_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
+        String CREATE_TABLE_15_MONTHS = "CREATE TABLE IF NOT EXISTS " + TABLE_15_MONTHS + "(" + FOOD_KEY_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
                 + FOOD_KEY_NAME + " TEXT, " + FOOD_KEY_MATERIAL + " TEXT, " + FOOD_KEY_METHOD + " TEXT, " + FOOD_KEY_TIME + " TEXT, "
                 + FOOD_KEY_ADMIN + " INTEGER, " + FOOD_KEY_FAVORITE + " TEXT)";
 
-        String CREAT_TABLE_FORGET = "CREATE TABLE IF NOT EXISTS " + TABLE_FORGET + "(" + NOTE_KEY_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
+        String CREATE_TABLE_FORGET = "CREATE TABLE IF NOT EXISTS " + TABLE_FORGET + "(" + NOTE_KEY_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
                 + NOTE_KEY_NAME + " TEXT, " + NOTE_KEY_CONTENT + " TEXT, " + NOTE_KEY_URL + " TEXT, " + NOTE_KEY_ADMIN + " INTEGER)";
 
-        String CREAT_TABLE_REMEMBER = "CREATE TABLE IF NOT EXISTS " + TABLE_REMEMBER + "(" + NOTE_KEY_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
+        String CREATE_TABLE_REMEMBER = "CREATE TABLE IF NOT EXISTS " + TABLE_REMEMBER + "(" + NOTE_KEY_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
                 + NOTE_KEY_NAME + " TEXT, " + NOTE_KEY_CONTENT + " TEXT, " + NOTE_KEY_URL + " TEXT, " + NOTE_KEY_ADMIN + " INTEGER)";
 
-        String CREAT_TABLE_FOOD_WEEK = "CREATE TABLE IF NOT EXISTS " + TABLE_FOOD_IN_WEEK + "(" + FOOD_WEEK_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
+        String CREATE_TABLE_FOOD_WEEK = "CREATE TABLE IF NOT EXISTS " + TABLE_FOOD_IN_WEEK + "(" + FOOD_WEEK_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
                 + FOOD_WEEK_DAY + " TEXT, " + FOOD_WEEK_CONTENT + " TEXT)";
 
-        String CREAT_TALE_NUTRITION_TOWER = "CREATE TABLE IF NOT EXISTS " + TABLE_NUTRITION_TOWER + "(" + NOTE_KEY_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
+        String CREATE_TALE_NUTRITION_TOWER = "CREATE TABLE IF NOT EXISTS " + TABLE_NUTRITION_TOWER + "(" + NOTE_KEY_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
                 + NOTE_KEY_NAME + " TEXT, " + NOTE_KEY_CONTENT + " TEXT, " + NOTE_KEY_URL + " TEXT)";
-        ;
 
-        sqLiteDatabase.execSQL(CREAT_TABLE_8_MONTHS);
-        sqLiteDatabase.execSQL(CREAT_TABLE_9_TO_11_MONTHS);
-        sqLiteDatabase.execSQL(CREAT_TABLE_15_MONTHS);
-        sqLiteDatabase.execSQL(CREAT_TABLE_FOOD_WEEK);
-        sqLiteDatabase.execSQL(CREAT_TABLE_FORGET);
-        sqLiteDatabase.execSQL(CREAT_TABLE_REMEMBER);
-        sqLiteDatabase.execSQL(CREAT_TALE_NUTRITION_TOWER);
+        String CREATE_TABLE_TIME_FOOD = "CREATE TABLE IF NOT EXISTS " + TABLE_TIME_FOOD + "(" + TIME_FOOD_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "
+                + TIME_FOOD_ID_CAT + " INTEGER, " + TIME_FOOD_TIME + " TEXT, " + TIME_FOOD_CONTENT + " TEXT, " + TIME_FOOD_METHOD + " TEXT)";
+
+        sqLiteDatabase.execSQL(CREATE_TABLE_8_MONTHS);
+        sqLiteDatabase.execSQL(CREATE_TABLE_9_TO_11_MONTHS);
+        sqLiteDatabase.execSQL(CREATE_TABLE_15_MONTHS);
+        sqLiteDatabase.execSQL(CREATE_TABLE_FOOD_WEEK);
+        sqLiteDatabase.execSQL(CREATE_TABLE_FORGET);
+        sqLiteDatabase.execSQL(CREATE_TABLE_REMEMBER);
+        sqLiteDatabase.execSQL(CREATE_TALE_NUTRITION_TOWER);
+        sqLiteDatabase.execSQL(CREATE_TABLE_TIME_FOOD);
     }
 
     @Override
@@ -111,6 +123,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_REMEMBER);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_FORGET);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NUTRITION_TOWER);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_TIME_FOOD);
+
         onCreate(sqLiteDatabase);
     }
 
@@ -535,6 +549,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             callBack.saveFail();
         }
         database.close();
+    }
+
+    public List<FoodsDay> getListFoodDay() {
+
+        List<FoodsDay> list = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_TIME_FOOD;
+        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                FoodsDay foodsDay = new FoodsDay();
+                foodsDay.set_time(cursor.getString(cursor.getColumnIndexOrThrow(TIME_FOOD_TIME)));
+                foodsDay.set_content(cursor.getString(cursor.getColumnIndexOrThrow(TIME_FOOD_CONTENT)));
+                foodsDay.set_method(cursor.getString(cursor.getColumnIndexOrThrow(TIME_FOOD_METHOD)));
+                list.add(foodsDay);
+            } while (cursor.moveToNext());
+        }
+        return list;
     }
 
 
