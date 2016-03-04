@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class AddingActivity extends AppCompatActivity {
     private Button saveBtn;
     private Button captureBtn;
     private ImageView imagePreView;
+    private RelativeLayout imageLayout;
 
     private EditText nameItem;
     private EditText timeItem;
@@ -62,6 +64,7 @@ public class AddingActivity extends AppCompatActivity {
 
     private String pathImage;
     private DatabaseHandler databaseHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +86,7 @@ public class AddingActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.addingToolBar);
         setSupportActionBar(toolbar);
 
+        imageLayout = (RelativeLayout) findViewById(R.id.add_activity_addImageLayout);
         captureBtn = (Button) findViewById(R.id.add_activity_captureButton);
         saveBtn = (Button) findViewById(R.id.add_activity_saveBtn);
 
@@ -102,18 +106,20 @@ public class AddingActivity extends AppCompatActivity {
         captureBtn.setOnClickListener(chooseAPhotoListener);
         saveBtn.setOnClickListener(saveDataListener);
 
-        suitableMaterialPrefix();
+        suitableLayoutAdd();
 
     }
 
-    private void suitableMaterialPrefix() {
+    private void suitableLayoutAdd() {
 
         if (typeAdd.equals(AppUtils.ADD_ADVICE)) {
+            imageLayout.setVisibility(View.VISIBLE);
             materialLayout.setVisibility(View.GONE);
             methodPrefix.setText(getString(R.string.add_activity_advices_content));
         } else {
             materialLayout.setVisibility(View.VISIBLE);
             methodPrefix.setText(getString(R.string.add_activity_foods_method));
+            imageLayout.setVisibility(View.GONE);
         }
     }
 
@@ -124,22 +130,24 @@ public class AddingActivity extends AppCompatActivity {
             String time = timeItem.getText().toString();
             String method = methodItem.getText().toString();
             String material = materialItem.getText().toString();
-            if (typeAdd.equals(AppUtils.ADD_ADVICE)){
-                if (TextUtils.isEmpty(name)){
+            if (typeAdd.equals(AppUtils.ADD_ADVICE)) {
+                if (pathImage == null || TextUtils.isEmpty(pathImage)) {
+                    Toast.makeText(AddingActivity.this, "Chưa chọn ảnh cho nội dung muốn lưu", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(name)) {
                     showToastEmpty("Tên ");
-                } else if (TextUtils.isEmpty(method)){
+                } else if (TextUtils.isEmpty(method)) {
                     showToastEmpty("Nội dung ");
                 } else {
                     saveAddvice(name, method);
                 }
-            } else if (typeAdd.equals(AppUtils.ADD_FOOD)){
-                if (TextUtils.isEmpty(name)){
+            } else if (typeAdd.equals(AppUtils.ADD_FOOD)) {
+                if (TextUtils.isEmpty(name)) {
                     showToastEmpty("Tên ");
-                } else if (TextUtils.isEmpty(time)){
+                } else if (TextUtils.isEmpty(time)) {
                     showToastEmpty("Thời gian thực hiện ");
-                } else if(TextUtils.isEmpty(material)){
+                } else if (TextUtils.isEmpty(material)) {
                     showToastEmpty("Nguyên liệu ");
-                } else if (TextUtils.isEmpty(method)){
+                } else if (TextUtils.isEmpty(method)) {
                     showToastEmpty("Cách làm ");
                 } else {
                     saveFood(name, time, material, method);
@@ -259,13 +267,13 @@ public class AddingActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK){
-            if(requestCode == REQUEST_CAMERA){
+        if (resultCode == RESULT_OK) {
+            if (requestCode == REQUEST_CAMERA) {
                 Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
 
-                String fileName = "BF_" + System.currentTimeMillis()+".jpg";
+                String fileName = "BF_" + System.currentTimeMillis() + ".jpg";
 
                 File direct = new File(Environment.getExternalStorageDirectory() + "/BabyFood");
                 if (!direct.exists()) {
@@ -291,7 +299,7 @@ public class AddingActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            if (requestCode == REQUEST_PICK_IMAGE){
+            if (requestCode == REQUEST_PICK_IMAGE) {
 
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
@@ -313,7 +321,7 @@ public class AddingActivity extends AppCompatActivity {
 
     private void showImagePreview(Bitmap thumbnail) {
         imagePreView.setVisibility(View.VISIBLE);
-        imagePreView.setImageBitmap(Bitmap.createScaledBitmap(thumbnail, 150,150, false));
+        imagePreView.setImageBitmap(Bitmap.createScaledBitmap(thumbnail, 150, 150, false));
     }
 
     View.OnTouchListener touchEdittextListener = new View.OnTouchListener() {
