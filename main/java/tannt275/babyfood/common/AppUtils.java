@@ -48,7 +48,10 @@ public class AppUtils {
     public static String DATA_TYPE_ADVICES = "DATA_TYPE_ADVICES";
 
     public static String ADD_TYPE = "ADD_TYPE";
-    public static String ADD_ADVICE = "ADVICE_TYPE";
+    public static String ADD_ADVICE = "ADD_ADVICE";
+    public static String MODIFIED_ADVICE = "MODIFIED_ADVICE";
+    public static String MODIFIED_ADVICE_DATA = "MODIFIED_ADVICE_DATA";
+
     public static String ADD_FOOD = "ADD_FOOD";
     public static String MODIFIED_FOOD = "EDIT_FOOD";
     public static String MODIFIED_FOOD_DATA = "MODIFIED_FOOD_DATA";

@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -60,7 +61,9 @@ public class AddingActivity extends AppCompatActivity {
     private String typeAdvices;
     private String typeAdd;
     private int typeModifiedFood;
+    private int typeModifiedAdvice;
     private FoodModel foodModel;
+    private AdvicesModel advicesModel;
 
     private Dialog dialog;
     private int REQUEST_CAMERA = 999;
@@ -80,6 +83,11 @@ public class AddingActivity extends AppCompatActivity {
             Log.e(TAG, "type add: " + typeAdd);
             if (typeAdd.equals(AppUtils.ADD_ADVICE)) {
                 typeAdvices = bundle.getString(AppUtils.DATA_TYPE_ADVICES);
+                typeModifiedAdvice = bundle.getInt(AppUtils.MODIFIED_ADVICE);
+                if (typeModifiedAdvice == AppUtils.ADD_OLD_FOOD) {
+                    advicesModel = new Gson().fromJson(bundle.getString(AppUtils.MODIFIED_ADVICE_DATA), AdvicesModel.class);
+                    Log.e(TAG, "advicesmodel get: " + advicesModel.convertToString());
+                }
                 Log.e(TAG, "type addvices: " + typeAdvices);
             } else if (typeAdd.equals(AppUtils.ADD_FOOD)) {
                 nameTable = bundle.getString(AppUtils.TAG_FOOD_TABLE);
@@ -126,6 +134,13 @@ public class AddingActivity extends AppCompatActivity {
             imageLayout.setVisibility(View.VISIBLE);
             materialLayout.setVisibility(View.GONE);
             methodPrefix.setText(getString(R.string.add_activity_advices_content));
+            if (typeModifiedAdvice == AppUtils.ADD_OLD_FOOD) {
+                imagePreView.setVisibility(View.VISIBLE);
+                ImageLoader.getInstance().displayImage("file://" + advicesModel.get_url(), imagePreView, AppUtils.OPTION_IMAGE_LOCAL);
+                nameItem.setText(advicesModel.get_name());
+                methodItem.setText(advicesModel.get_content());
+
+            }
         } else if (typeAdd.equals(AppUtils.ADD_FOOD)) {
             materialLayout.setVisibility(View.VISIBLE);
             methodPrefix.setText(getString(R.string.add_activity_foods_method));
@@ -142,6 +157,7 @@ public class AddingActivity extends AppCompatActivity {
     private View.OnClickListener saveDataListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
             String name = nameItem.getText().toString();
             String time = timeItem.getText().toString();
             String method = methodItem.getText().toString();
@@ -216,7 +232,7 @@ public class AddingActivity extends AppCompatActivity {
             @Override
             public void saveSuccess() {
                 Toast.makeText(AddingActivity.this, "Lưu thành công", Toast.LENGTH_LONG).show();
-                timeItem.setText("");
+                nameItem.setText("");
                 methodItem.setText("");
                 databaseHandler.close();
             }

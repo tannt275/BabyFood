@@ -30,6 +30,7 @@ public class ReadingActivity extends AppCompatActivity {
     public static String TAG = ReadingActivity.class.getSimpleName();
     private ViewPager viewPager;
     private ImageView addImage;
+    private ImageView editImage;
     private ImageView deleteImage;
     private ImageView shareImage;
 
@@ -66,6 +67,7 @@ public class ReadingActivity extends AppCompatActivity {
 
         viewPager = (ViewPager) findViewById(R.id.reading_advicesViewPager);
         addImage = (ImageView) findViewById(R.id.addImage);
+        editImage = (ImageView) findViewById(R.id.editImage);
         deleteImage = (ImageView) findViewById(R.id.deleteImage);
         shareImage = (ImageView) findViewById(R.id.shareImage);
 
@@ -85,8 +87,10 @@ public class ReadingActivity extends AppCompatActivity {
         addImage.setOnClickListener(addItemListener);
         deleteImage.setOnClickListener(deleteItemListener);
         shareImage.setOnClickListener(shareItemListener);
+        editImage.setOnClickListener(editItemListener);
 
-        checkImageDelete(advicesModelList.get(currentPosition));
+        checkStateImage(advicesModelList.get(currentPosition));
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -97,7 +101,7 @@ public class ReadingActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 advicesModel = advicesModelList.get(viewPager.getCurrentItem());
                 Log.e(TAG, "item display when viewpager selected: " + advicesModel.convertToString());
-                checkImageDelete(advicesModel);
+                checkStateImage(advicesModel);
             }
 
             @Override
@@ -110,11 +114,32 @@ public class ReadingActivity extends AppCompatActivity {
 
     }
 
-    private void checkImageDelete(AdvicesModel item){
+    private void checkStateImage(AdvicesModel item) {
 
         deleteImage.setImageResource(item.get_admin() == 1 ? R.mipmap.app_delete_deactive_icon : R.mipmap.app_delete_active_icon);
         deleteImage.setEnabled((item.get_admin() == 2));
+
+        editImage.setImageResource(item.get_admin() == 1 ? R.mipmap.app_edit_deactive_icon : R.mipmap.app_edit_active_icon);
+        editImage.setEnabled(item.get_admin() == 2);
+
     }
+
+    private View.OnClickListener editItemListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            Intent toAddActivity = new Intent(ReadingActivity.this, AddingActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString(AppUtils.DATA_TYPE_ADVICES, typeAdvice);
+            bundle.putString(AppUtils.ADD_TYPE, AppUtils.ADD_ADVICE);
+            bundle.putInt(AppUtils.MODIFIED_ADVICE, AppUtils.ADD_OLD_FOOD);
+            bundle.putString(AppUtils.MODIFIED_ADVICE_DATA, advicesModel.convertToString());
+            toAddActivity.putExtras(bundle);
+            startActivity(toAddActivity);
+
+        }
+    };
+
 
     private View.OnClickListener addItemListener = new View.OnClickListener() {
         @Override
@@ -123,6 +148,7 @@ public class ReadingActivity extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putString(AppUtils.DATA_TYPE_ADVICES, typeAdvice);
             bundle.putString(AppUtils.ADD_TYPE, AppUtils.ADD_ADVICE);
+            bundle.putInt(AppUtils.MODIFIED_ADVICE, AppUtils.ADD_NEW_FOOD);
             toAddActivity.putExtras(bundle);
             startActivity(toAddActivity);
         }
