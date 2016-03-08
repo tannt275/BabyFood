@@ -76,4 +76,8 @@
     <string name="delete_data_success">Xóa dữ liệu thành công!</string>
     <string name="delete_data_fail">Xóa dữ liệu thất bại!</string>
 
+    <string name="food_in_week_item_time">Thời gian</string>
+    <string name="food_in_week_item_content">Nội dung</string>
+    <string name="food_in_week_item_method">Cách làm (hoặc định lượng)</string>
+
 </resources>

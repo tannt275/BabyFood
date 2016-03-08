@@ -109,7 +109,7 @@ public class FoodInWeekFragment extends Fragment {
         private DatabaseHandler databaseHandler;
         private ImageView imageView;
         private ListView listItem;
-//        private TextView content;?
+        //        private TextView content;?
         private FoodInWeekModel foodInWeekModel;
 
         public static FoodInWeekFragmentItem newInstance(FoodInWeekModel foodInWeekModel) {
@@ -132,7 +132,6 @@ public class FoodInWeekFragment extends Fragment {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.refine_fragment_food_in_week_item, container, false);
             imageView = (ImageView) rootView.findViewById(R.id.refinefragment_food_in_week_item_image);
-//            content = (TextView) rootView.findViewById(R.id.fragment_food_in_week_content);
             listItem = (ListView) rootView.findViewById(R.id.refine_fragment_food_in_week_item_listView);
             rootView.post(new Runnable() {
                 @Override
@@ -145,14 +144,19 @@ public class FoodInWeekFragment extends Fragment {
         }
 
         private void fillData() {
-//            content.setText(foodInWeekModel.get_content());
+
             imageView.setImageResource(foodInWeekModel.get_idResource());
             databaseHandler = new DatabaseHandler(getActivity());
             List<FoodsDay> list = databaseHandler.getListFoodsDayWithIdOfDay(foodInWeekModel.get_id());
             FoodInWeekFragmentAdapter foodInWeekFragmentAdapter = new FoodInWeekFragmentAdapter(getActivity(), list);
+            listItem.addHeaderView(headerList());
             listItem.setAdapter(foodInWeekFragmentAdapter);
         }
 
+        private View headerList() {
+            View rootView = LayoutInflater.from(getActivity()).inflate(R.layout.header_list_food_in_week, null);
+            return rootView;
+        }
     }
 
     public static class AdapterFoodInWeek extends FragmentStatePagerAdapter {

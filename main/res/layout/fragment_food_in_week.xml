@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/activity_vertical_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
+    android:layout_marginTop="10dp"
     android:orientation="vertical"
     tools:context="tannt275.babyfood.fragment.FoodInWeekFragment">
 
@@ -21,6 +21,6 @@
         android:id="@+id/food_in_week_viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"></android.support.v4.view.ViewPager>
+        android:layout_marginTop="7dp" />
 
 </LinearLayout>

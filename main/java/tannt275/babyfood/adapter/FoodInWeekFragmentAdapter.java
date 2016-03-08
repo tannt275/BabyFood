@@ -56,7 +56,12 @@ public class FoodInWeekFragmentAdapter extends BaseAdapter {
         FoodsDay foodsDay = foodsDayList.get(position);
         viewHolder.time.setText(foodsDay.get_time() + "");
         viewHolder.content.setText(foodsDay.get_content());
-        viewHolder.method.setText(foodsDay.get_method() + "");
+        if (foodsDay.get_method() == null) {
+            viewHolder.method.setText("");
+        } else {
+
+            viewHolder.method.setText(foodsDay.get_method() + "");
+        }
         return convertView;
     }
 
