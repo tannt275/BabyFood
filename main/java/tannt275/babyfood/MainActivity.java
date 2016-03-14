@@ -20,6 +20,7 @@ import java.util.List;
 import tannt275.babyfood.common.AppUtils;
 import tannt275.babyfood.common.Log;
 import tannt275.babyfood.database.DatabaseHandler;
+import tannt275.babyfood.fragment.FavoriteFoodsFragment;
 import tannt275.babyfood.fragment.FoodInWeekFragment;
 import tannt275.babyfood.fragment.FoodsFragment;
 import tannt275.babyfood.fragment.NutritionTowerFragment;
@@ -121,6 +122,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_below_15_months:
                 FoodsFragment foodsFragment_below_15_months = FoodsFragment.newInstance(AppUtils.TAG_15MONTHS);
                 displayFragment(foodsFragment_below_15_months);
+                break;
+            case R.id.nav_favorite:
+                FavoriteFoodsFragment favoriteFoodsFragment = new FavoriteFoodsFragment();
+                displayFragment(favoriteFoodsFragment);
                 break;
         }
 

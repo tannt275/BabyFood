@@ -134,8 +134,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      *
      * @return
      */
-    public ArrayList<FoodModel> getListFavorite() {
-        ArrayList<FoodModel> list = new ArrayList<>();
+    public List<FoodModel> getListFavorite() {
+        List<FoodModel> list = new ArrayList<>();
         SQLiteDatabase database = this.getReadableDatabase();
         String queryInTable8Months = "SELECT * FROM " + TABLE_8_MONTHS;
         Cursor cursor8Months = database.rawQuery(queryInTable8Months, null);

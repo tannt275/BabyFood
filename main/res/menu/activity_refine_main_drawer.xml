@@ -39,5 +39,11 @@
             </group>
         </menu>
     </item>
+    <group>
+        <item android:id="@+id/nav_favorite"
+            android:title="@string/drawer_foods_favorite"
+            android:icon="@drawable/ic_favorite"
+            />
+    </group>
 
 </menu>
