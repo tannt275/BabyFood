@@ -6,6 +6,8 @@
     <string name="facebook_app_id">168856303496515</string>
 
     <string name="food_in_week_certificate">Thực đơn tham khảo được cung cấp bởi Viện dinh dưỡng.</string>
+    <!--for admod-->
+    <string name="main_bottom_ad">ca-app-pub-4079505062217481/8737994059</string>
 
     <!--for drawer layout-->
     <string name="drawer_open">Drawer Open</string>

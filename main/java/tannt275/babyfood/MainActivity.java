@@ -1,7 +1,6 @@
 package tannt275.babyfood;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,25 +11,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import java.awt.font.TextAttribute;
-import java.util.List;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import tannt275.babyfood.common.AppUtils;
-import tannt275.babyfood.common.Log;
-import tannt275.babyfood.database.DatabaseHandler;
 import tannt275.babyfood.fragment.FavoriteFoodsFragment;
 import tannt275.babyfood.fragment.FoodInWeekFragment;
 import tannt275.babyfood.fragment.FoodsFragment;
 import tannt275.babyfood.fragment.NutritionTowerFragment;
 import tannt275.babyfood.fragment.ShouldFragment;
 import tannt275.babyfood.fragment.WarningFragment;
-import tannt275.babyfood.model.FoodsDay;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static String TAG = MainActivity.class.getSimpleName();
+
+    private AdView mAdView;
+    private AdRequest adRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_refine_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mAdView = (AdView) findViewById(R.id.main_bottom_adView);
+        adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
