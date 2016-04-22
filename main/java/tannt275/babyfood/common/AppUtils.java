@@ -1,6 +1,5 @@
 package tannt275.babyfood.common;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -8,8 +7,6 @@ import android.content.pm.Signature;
 import android.graphics.Bitmap;
 import android.util.Base64;
 import android.util.Log;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
@@ -60,18 +57,18 @@ public class AppUtils {
     public static int ADD_OLD_FOOD = 998;
 
     public static DisplayImageOptions OPTION_IMAGE = new DisplayImageOptions.Builder()
-            .showImageOnLoading(R.mipmap.ic_launcher)
-            .showImageForEmptyUri(R.mipmap.ic_launcher)
+            .showImageOnLoading(R.mipmap.app_splash_icon)
+            .showImageForEmptyUri(R.mipmap.app_splash_icon)
             .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
             .cacheInMemory(true)
             .cacheOnDisk(true)
             .build();
 
     public static DisplayImageOptions OPTION_IMAGE_LOCAL = new DisplayImageOptions.Builder()
-            .showStubImage(R.mipmap.ic_launcher)
-            .showImageForEmptyUri(R.mipmap.ic_launcher)
+            .showStubImage(R.mipmap.app_splash_icon)
+            .showImageForEmptyUri(R.mipmap.app_splash_icon)
             .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
-            .showImageOnFail(R.mipmap.ic_launcher)
+            .showImageOnFail(R.mipmap.app_splash_icon)
             .cacheInMemory()
             .cacheOnDisc()
             .bitmapConfig(Bitmap.Config.RGB_565)
